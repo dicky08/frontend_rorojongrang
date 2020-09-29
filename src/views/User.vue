@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap-content"> <nav  class=" fixed-top container navbar navbar-expand-lg navbar-light bg-warning bg-white mb-5">
+    <div class="wrap-content"> <nav  class=" fixed-top container-fluid navbar navbar-expand-lg navbar-light bg-warning bg-white mb-5">
     <img style="width: 50px" src="../assets/assets/img/vector 3.png" alt="" srcset="">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
     <button class="btn btn-primary btn-as mr-5 ">sign</button>
   </div>
 </nav>
-    <div class="container content">
+    <div class="container-fluid content pl-5 pr-5">
        <div class="" style=" display: flex; justify-content: space-around; height: 100vh">
            <div  class="col-md-3 bg-white">
                <div class="text-center mt-5">
@@ -56,7 +56,7 @@
                        <span  class="ml-3 font-weight-bold">my riview</span>
                    </div>
                    <div class="mt-2">
-                       <span class="fa fa-cogs"></span>
+                       <span     class="fa fa-cogs"></span>
                        <span  class="ml-3 font-weight-bold">settings</span>
                    </div>
                    <div class="mt-2">
@@ -65,7 +65,7 @@
                    </div>
                </div>
            </div>
-           <div class="col-md-9 info-user bg-white ml-5 ">
+           <div class="col-md-9 info-user  bg-white ml-5 ">
                <h5 class="text-primary">profile</h5>
                <h3 class="font-weight-bold">profile</h3>
                <div class="row">

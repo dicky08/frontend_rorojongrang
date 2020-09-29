@@ -109,11 +109,6 @@
         <br>
         <span>paris</span>
       </div>
-      <div class="text-center">
-        <img class="avatar" src="../assets/assets/img/nnzkZNYWHaU.png" alt="" srcset="">
-        <br>
-        <span>paris</span>
-      </div>
     </div>
     <div class="image-top">
       <b-button variant="outline-dark" class="mb-2">
@@ -189,8 +184,13 @@ ul:nth-child(odd){
   justify-content: space-between;
 }
 .card-trending {
-  display: flex;
-  justify-content: space-around;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: center;
+}
+.column {
+   flex: 0 0 auto;
+   padding-left: 20px;
 }
 .top-destination{
   background: #2395FF;
@@ -210,13 +210,13 @@ ul:nth-child(odd){
     border-radius: 500px;
     -webkit-border-radius: 500px;
     -moz-border-radius: 500px;
+    flex: 0 0 auto;
 }
 .image-ten {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  overflow: auto;
-  white-space: nowrap;
+ flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: space-evenly;
 }
 .image-top {
   display: flex;

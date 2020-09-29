@@ -70,12 +70,12 @@
                         </div>
                     </div>
                 </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
             </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -91,7 +91,7 @@ export default {
 <style scoped>
 .modal-dialog {
   position: absolute;
-  top: 50px;
+  top: 20px;
   right: 20px;
   bottom: 0;
   left: 0;
