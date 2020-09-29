@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import findTiket from '../views/Find_Tiket.vue'
+import myBooking from '../views/My_Booking.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/findtiket',
     name: 'findTiket',
     component: findTiket
+  },
+  {
+    path: '/mybooking',
+    name: 'myBooking',
+    component: myBooking
   },
   {
     path: '/about',
