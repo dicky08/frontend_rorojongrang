@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import findTiket from '../views/Find_Tiket.vue'
+import landing from '../views/landing.vue'
+import User from '../views/User.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,16 @@ const routes = [
     path: '/findtiket',
     name: 'findTiket',
     component: findTiket
+  },
+  {
+    path: '/landing',
+    name: 'landing',
+    component: landing
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: User
   },
   {
     path: '/about',
