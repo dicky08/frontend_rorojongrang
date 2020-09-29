@@ -13,34 +13,16 @@
           <img src="../assets/assets/img/btnback.png" alt="">
         </div>
         <div class="m-5">
-          <h2 class="textLogin"><strong>Register</strong></h2>
+          <h2 class="textLogin"><strong>Forgot Password</strong></h2>
           <div class="md-form input-with-post-icon">
-            <input type="text" id="suffixInside" class="form-control">
-            <label for="suffixInside">Full Name </label>
-          </div>
-          <div class="md-form input-with-post-icon">
-            <input type="text" id="suffixInside" class="form-control">
+            <input type="email" id="suffixInside" class="form-control">
             <label for="suffixInside">Email </label>
           </div>
-          <div class="md-form input-with-post-icon">
-            <i class="fas fa-eye input-prefix"></i>
-            <input type="text" id="suffixInside" class="form-control">
-            <label for="suffixInside">Password </label>
-          </div>
           <div>
-          <b-button class="p-2" block variant="primary"><strong>Sign Up</strong></b-button>
+            <b-button class="p-2" block variant="primary"><b>Send</b></b-button>
           </div>
           <p></p>
-          <b-form-checkbox class="pb-4">Accept terms and condition</b-form-checkbox>
-          <div>
-            <img class="divider" src="../assets/assets/img/divider.png" alt="">
-          </div>
-          <div class="signIn">
-            <h7>Already have an account ?</h7>
-          </div>
-          <div>
-            <b-button class="p-2" block variant="outline-primary"><strong>Sign In</strong></b-button>
-          </div>
+          <p>You’ll get message soon on your email</p>
         </div>
       </div>
     </div>
@@ -71,11 +53,11 @@ input[type=text] {
   text-align: center;
 }
 .divider {
-  width: 100%;
+  width: 77%;
 }
 .signIn {
 text-align: center;
-padding-bottom: 10px;
+padding-bottom: 35px;
 }
 .signIn img {
   width: 24px;
@@ -91,6 +73,9 @@ padding-bottom: 10px;
  }
  .back {
    display: block;
+ }
+ .divider {
+  width: 80%;
  }
  .signIn {
  padding-bottom: 30px;

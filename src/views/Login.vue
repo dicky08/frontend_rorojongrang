@@ -14,12 +14,19 @@
         </div>
         <div class="m-5">
           <h2 class="textLogin"><strong>Login</strong></h2>
+          <div class="md-form input-with-post-icon">
+            <input type="text" id="suffixInside" class="form-control">
+            <label for="suffixInside">Username </label>
+          </div>
           <p></p>
-          <b-form-input v-model="text" placeholder="Username"></b-form-input>
-          <p></p>
-          <b-form-input v-model="text" placeholder="Password"></b-form-input>
-          <p class="pb-2"></p>
-          <b-button class="p-2" block variant="primary"><strong>Sign In</strong></b-button>
+          <div class="md-form input-with-post-icon">
+            <i class="fas fa-eye input-prefix"></i>
+            <input type="text" id="suffixInside" class="form-control">
+            <label for="suffixInside">Password </label>
+          </div>
+          <div>
+            <b-button class="p-2" block variant="primary"><strong>Sign In</strong></b-button>
+          </div>
           <p></p>
           <p>Did you forget your password ?</p>
           <p></p>
