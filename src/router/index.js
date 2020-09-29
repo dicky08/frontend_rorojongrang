@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import findTiket from '../views/Find_Tiket.vue'
+import flightDetail from '../views/Flight_Detail.vue'
 import landing from '../views/landing.vue'
 import User from '../views/User.vue'
 
@@ -17,6 +18,11 @@ const routes = [
     path: '/findtiket',
     name: 'findTiket',
     component: findTiket
+  },
+  {
+    path: '/flightdetail',
+    name: 'flightDetail',
+    component: flightDetail
   },
   {
     path: '/landing',
