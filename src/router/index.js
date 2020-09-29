@@ -2,7 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import findTiket from '../views/Find_Tiket.vue'
+
 import myBooking from '../views/My_Booking.vue'
+
+import landing from '../views/landing.vue'
+import User from '../views/User.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +27,16 @@ const routes = [
     component: myBooking
   },
   {
+    path: '/landing',
+    name: 'landing',
+    component: landing
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: User
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
@@ -31,7 +45,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
