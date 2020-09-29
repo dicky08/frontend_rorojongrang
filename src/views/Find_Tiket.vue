@@ -9,7 +9,7 @@
                 <img src="../assets/assets/img/vector 02.png" alt="Image-ankasa-white">
               </div>
               <div class="col-md-4">
-                <p class="from">From</p>
+                <p class="from">From DIKI</p>
                 <h4 class="city ml-3"> Medan(IDN)</h4>
               </div>
               <div class="col-md-1 text-white">
