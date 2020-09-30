@@ -5,7 +5,6 @@ import users from './users/'
 import axios from 'axios'
 import auth from './auth/index'
 import swal from 'sweetalert2'
-import auth from './auth'
 
 Vue.use(Vuex)
 
