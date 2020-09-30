@@ -1,7 +1,7 @@
 <template>
 <div class="" >
   <!-- navbar -->
-   <nav  class=" fixed-top container navbar navbar-expand-lg navbar-light bg-white bg-none mb-5">
+   <nav  class=" fixed-top container hai-manis navbar navbar-expand-lg navbar-light bg-white bg-none mb-5">
     <img style="width: 50px" src="../assets/assets/img/vector 3.png" alt="" srcset="">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,8 +14,8 @@
             <input type="text" class="form-control mt-2" placeholder="Search">
         </div>
       </li>
-      <li class="nav-item active home ml-2">
-        <a class="nav-link" href="javascript:viod()" data-toggle="modal" data-target="#exampleModal"> Find tiket <span class="sr-only">(current)</span></a>
+      <li class="nav-item nav-links home ml-2">
+        <a class="nav-link " href="javascript:viod()" data-toggle="modal" data-target="#exampleModal"> Find tiket <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item link ml-2">
         <a class="nav-link" href="#">MY booking</a>
@@ -109,51 +109,56 @@
         <br>
         <span>paris</span>
       </div>
-      <div class="text-center">
-        <img class="avatar" src="../assets/assets/img/nnzkZNYWHaU.png" alt="" srcset="">
-        <br>
-        <span>paris</span>
-      </div>
     </div>
     <div class="image-top">
-      <b-button variant="outline-dark" class="mb-2">
-      <b-icon icon="caret-left" aria-hidden="true"></b-icon>previous
+      <b-button variant="outline-dark">
+      <b-icon icon="caret-left" aria-hidden="true"></b-icon>
     </b-button>
-     <b-button variant="light" class="mb-2">
-      <b-icon icon="caret-right"  aria-hidden="true"></b-icon> next
+     <b-button variant="light">
+      <b-icon icon="caret-right"  aria-hidden="true"></b-icon>
     </b-button>
     </div>
     </div>
   </div>
   <Modal />
 </div>
+  <Footer />
 <!-- end of main -->
 </div>
 </template>
 
 <script>
 import Modal from '../components/Modal'
+import Footer from '../components/Footer'
 export default {
   components: {
-    Modal
+    Modal,
+    Footer
   }
-
 }
 </script>
 
 <style scoped>
 /* navbar */
+.hai-manis {
+  box-shadow: none;
+}
+.nav-links {
+  background-color: white;
+  color: red;
+}
+.prev-btn  {
+  height: 7vh;
+}
 ul:nth-child(odd){
     margin-left: 100px;
 }
 .btn-as{
     margin-left: 100px;
 }
-
 .has-search .form-control {
     padding-left: 2.375rem;
 }
-
 .has-search .form-control-feedback {
     position: absolute;
     z-index: 2;
@@ -189,39 +194,50 @@ ul:nth-child(odd){
   justify-content: space-between;
 }
 .card-trending {
-  display: flex;
-  justify-content: space-around;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: center;
+}
+.column {
+   flex: 0 0 auto;
+   padding-left: 20px;
 }
 .top-destination{
-  background: #2395FF;
+  background: url('../assets/assets/img/Group 388.png');
+  background-size: cover;
+  background-position: left;
   width: 100%;
-  border-radius: 30px;
-  height: 30vh;
+  border-radius: 40px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .tp-dstn {
   display: flex;
   justify-content: center;
 }
 .avatar {
-    width:70px;
+    width:80px;
     margin: 6px;
     border:5px solid #fff;
     padding: 6px;
     border-radius: 500px;
     -webkit-border-radius: 500px;
     -moz-border-radius: 500px;
+    flex: 0 0 auto;
 }
 .image-ten {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  overflow: auto;
-  white-space: nowrap;
+ flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
 }
 .image-top {
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
+  justify-content: center;
+  margin-top: 10px;
 }
-
 </style>

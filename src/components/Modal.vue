@@ -33,7 +33,7 @@
                 </div>
                 <div class="type mt-4">
                     <button class="btn btn-primary">roundtrip</button>
-                    <button class="btn btn-secondary">one way</button>
+                    <button class="btn btn-tayo">one way</button>
                 </div>
                 <div class="mt-2">
                     <span>departure</span>
@@ -70,12 +70,12 @@
                         </div>
                     </div>
                 </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-tayo" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
             </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -89,9 +89,12 @@ export default {
 </script>
 
 <style scoped>
+.btn-tayo{
+  background-color: #F0F0F0;
+}
 .modal-dialog {
   position: absolute;
-  top: 50px;
+  top: 20px;
   right: 20px;
   bottom: 0;
   left: 0;

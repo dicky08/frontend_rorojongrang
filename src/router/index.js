@@ -2,6 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import findTiket from '../views/Find_Tiket.vue'
+
+import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
+import ForgetPassword from '../views/ForgetPassword.vue'
 import flightDetail from '../views/Flight_Detail.vue'
 import landing from '../views/landing.vue'
 import User from '../views/User.vue'
@@ -41,6 +45,21 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/forgetpassword',
+    name: 'ForgetPassword',
+    component: ForgetPassword
   }
 ]
 
