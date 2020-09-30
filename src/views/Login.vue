@@ -37,7 +37,7 @@
               rules="required"
               v-slot="{ errors }"
               >
-            <input v-model="form.password" type="text" id="suffixInside" class="form-control">
+            <input v-model="form.password" type="password" id="suffixInside" class="form-control">
             <label for="suffixInside">Password </label>
               <div class="text-danger">
               {{errors[0]}}
