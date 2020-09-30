@@ -22,7 +22,7 @@
             <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
           </li>
           <li class="nav-item ml-4">
-            <a class="nav-link" href="#">Find Ticket</a>
+            <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModal">Find Ticket</a>
           </li>
           <li class="nav-item ml-4">
             <a class="nav-link" href="#">My Booking</a>

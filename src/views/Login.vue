@@ -14,19 +14,41 @@
         </div>
         <div class="m-5">
           <h2 class="textLogin"><strong>Login</strong></h2>
-          <div class="md-form input-with-post-icon">
-            <input type="text" id="suffixInside" class="form-control">
+          <ValidationObserver>
+          <form @submit.prevent="login" >
+             <div class="md-form input-with-post-icon">
+            <ValidationProvider
+              name="Email"
+              rules="required|email"
+              v-slot="{ errors }"
+            >
+            <input v-model="form.email" type="text" id="suffixInside" class="form-control">
             <label for="suffixInside">Username </label>
+            <div class="text-danger">
+              {{errors[0]}}
+            </div>
+            </ValidationProvider>
           </div>
           <p></p>
           <div class="md-form input-with-post-icon">
             <i class="fas fa-eye input-prefix"></i>
-            <input type="text" id="suffixInside" class="form-control">
+            <ValidationProvider
+              name="Password"
+              rules="required"
+              v-slot="{ errors }"
+              >
+            <input v-model="form.password" type="text" id="suffixInside" class="form-control">
             <label for="suffixInside">Password </label>
+              <div class="text-danger">
+              {{errors[0]}}
+            </div>
+            </ValidationProvider>
           </div>
           <div>
-            <b-button class="p-2" block variant="primary"><strong>Sign In</strong></b-button>
+            <b-button type="submit" class="p-2" block variant="primary"><strong>Sign In</strong></b-button>
           </div>
+          </form>
+      </ValidationObserver>
           <p></p>
           <p>Did you forget your password ?</p>
           <p></p>
@@ -44,6 +66,40 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+import Swal from 'sweetalert2'
+export default {
+  data () {
+    return {
+      form: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      onlogin: 'login'
+    }),
+    login () {
+      this.onlogin(this.form).then(res => {
+        setTimeout(() => {
+          window.location = '/'
+        }, 2000)
+        Swal.fire(
+          'Good job!',
+          `${res}`,
+          'success'
+        )
+      }).catch(err => {
+        alert(err)
+      })
+    }
+  }
+}
+</script>
 
 <style scoped>
 .overlay {
