@@ -1,7 +1,8 @@
 <template>
-<div class="" >
+<div>
   <!-- navbar -->
-   <nav  class=" fixed-top container hai-manis navbar navbar-expand-lg navbar-light bg-white bg-none mb-5">
+<div v-if="token === null" >
+  <nav class=" fixed-top container hai-manis navbar navbar-expand-lg navbar-light bg-white bg-none mb-5">
     <img style="width: 50px" src="../assets/assets/img/vector 3.png" alt="" srcset="">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,9 +22,13 @@
         <a class="nav-link" href="#">MY booking</a>
       </li>
     </ul>
-    <button class="btn btn-primary btn-as mr-5 ">sign</button>
+    <a  href="/login" class="btn btn-primary btn-as mr-5 ">sign</a>
   </div>
 </nav>
+</div>
+<div v-else >
+    <Navbar />
+</div>
 <!-- end navbar -->
 <!-- main -->
 <div  class="main-ctn mt-5">
@@ -122,18 +127,26 @@
   </div>
   <Modal />
 </div>
-  <Footer />
+  <!-- <Footer /> -->
 <!-- end of main -->
 </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Modal from '../components/Modal'
-import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
+// import Footer from '../components/Footer'
 export default {
   components: {
     Modal,
-    Footer
+    Navbar
+    // Footer
+  },
+  computed: {
+    ...mapState({
+      token: 'token'
+    })
   }
 }
 </script>
