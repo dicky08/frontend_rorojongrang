@@ -60,7 +60,7 @@
         <div class="signIn">
           <h6>or sign in with</h6>
           <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/google.png" alt=""></b-button>
-          <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/fb.png" alt=""></b-button>
+          <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/facebook.png" alt=""></b-button>
         </div>
       </div>
     </div>
