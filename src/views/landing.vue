@@ -19,7 +19,7 @@
         <a class="nav-link " href="javascript:viod()" data-toggle="modal" data-target="#exampleModal"> Find tiket <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item link ml-2">
-        <a class="nav-link" href="#">MY booking</a>
+        <router-link class="nav-link" to="/mybooking">MY booking</router-link>
       </li>
     </ul>
     <a  href="/login" class="btn btn-primary btn-as mr-5 ">sign</a>
