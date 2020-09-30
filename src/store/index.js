@@ -22,10 +22,6 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {
-    findtiket,
-    users
-  },
-  modules: {
     login ({ commit }, result) {
       return new Promise((resolve, reject) => {
         axios
@@ -57,5 +53,9 @@ export default new Vuex.Store({
           })
       })
     }
+  },
+  modules: {
+    findtiket,
+    users
   }
 })

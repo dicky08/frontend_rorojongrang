@@ -32,7 +32,6 @@
           <p></p>
           <div class="md-form input-with-post-icon">
             <i class="fas fa-eye input-prefix"></i>
-            <input type="password" id="suffixInside" class="form-control">
             <ValidationProvider
               name="Password"
               rules="required"
