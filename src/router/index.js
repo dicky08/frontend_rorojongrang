@@ -5,7 +5,7 @@ import findTiket from '../views/Find_Tiket.vue'
 
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import ForgetPassword from '../views/ForgetPassword.vue'
+import ForgotPassword from '../views/ForgotPassword.vue'
 import flightDetail from '../views/Flight_Detail.vue'
 import landing from '../views/landing.vue'
 import User from '../views/User.vue'
@@ -57,9 +57,9 @@ const routes = [
     component: Register
   },
   {
-    path: '/forgetpassword',
-    name: 'ForgetPassword',
-    component: ForgetPassword
+    path: '/forgotpassword',
+    name: 'ForgotPassword',
+    component: ForgotPassword
   }
 ]
 
