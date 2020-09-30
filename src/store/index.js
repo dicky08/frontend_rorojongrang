@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import findtiket from './findtiket/'
+import users from './users/'
 import axios from 'axios'
 import swal from 'sweetalert2'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: {},
   state: {
     token: localStorage.getItem('token')
   },
@@ -21,6 +22,10 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {
+  },
+  modules: {
+    findtiket,
+    users,
     login ({ commit }, result) {
       return new Promise((resolve, reject) => {
         axios
