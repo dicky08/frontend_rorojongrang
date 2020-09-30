@@ -124,6 +124,7 @@
              <hr style="margin: auto 20px;">
              <div class="row tiket-price mt-4 ml-2">
                <div class="col-md-6">
+                 <!-- Tiket -->
                  <h4>Ticket Price</h4>
                </div>
                <div class="col-md-6 text-right" style="margin-left:-55px">
