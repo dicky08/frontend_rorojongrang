@@ -3,8 +3,8 @@
         <Navbar />
         <b-row>
             <b-col lg="12">
-                <b-row class="body text-center mx-3">
-                    <b-col lg="3" class="left-mybooking mx-3 mt-4">
+                <b-row class="body text-center px-4">
+                    <b-col lg="3" class="left-mybooking mx-3 mt-4 mb-4">
                         <b-row class="mt-4">
                             <b-col lg="12">
                                 <div class="text-center">
@@ -12,7 +12,7 @@
                                 </div>
                             </b-col>
                             <b-col lg="12" class="mt-4">
-                                <b-button variant="outline-primary">Select Photo</b-button>
+                                <b-button md variant="outline-primary">Select Photo</b-button>
                             </b-col>
                             <b-col lg="12" class="mt-4">
                                 <h4 style="font-size:20px;">Mochamad Sofyan</h4>
@@ -73,7 +73,7 @@
                                         <h4>My Booking</h4>
                                     </b-col>
                                     <b-col lg="6" md="6" sm="6" cols="6" class="mb-2">
-                                        <h4 class="details mr-3" style="text-align:right;">Order History</h4>
+                                        <h4 class="history mr-3" style="text-align:right;">Order History</h4>
                                     </b-col>
                                 </b-row>
                             </b-col>
@@ -95,7 +95,7 @@
                                     <b-col lg="12" class="divider"></b-col>
                                     <b-col lg="12">
                                         <b-row class="mt-3">
-                                            <b-col lg="2" md="2" sm="2" cols="2" class="text-left" style="color: #7A7A7A;"><p>Status</p></b-col>
+                                            <b-col lg="2" md="2" sm="2" cols="6" class="text-left" style="color: #7A7A7A;"><p>Status</p></b-col>
                                             <b-col lg="3" md="5" sm="6" cols="6">
                                                 <p class="waiting">Waiting for payment</p>
                                             </b-col>
@@ -126,7 +126,7 @@
                                     <b-col lg="12" class="divider"></b-col>
                                     <b-col lg="12">
                                         <b-row class="mt-3">
-                                            <b-col lg="2" md="2" sm="2" cols="2" class="text-left" style="color: #7A7A7A;"><p>Status</p></b-col>
+                                            <b-col lg="2" md="2" sm="2" cols="6" class="text-left" style="color: #7A7A7A;"><p>Status</p></b-col>
                                             <b-col lg="3" md="5" sm="6" cols="6">
                                                 <p class="issued">Eticket Issued</p>
                                             </b-col>
@@ -141,15 +141,18 @@
                     </b-col>
                 </b-row>
             </b-col>
+            <Footer />
         </b-row>
     </div>
 </template>
 <script>
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 export default {
   name: 'My-Booking',
   components: {
-    Navbar
+    Navbar,
+    Footer
   }
 }
 </script>
@@ -195,6 +198,10 @@ export default {
         color: #2395FF;
         font-size: 16px;
     }
+    .history{
+        color: #2395FF;
+        font-size: 16px;
+    }
 
     /* profile */
     .avatar{
@@ -208,12 +215,15 @@ export default {
     }
     .xcard{
         background: #2395FF;
-box-shadow: 0px 8px 25px rgba(35, 149, 255, 0.49);
-border-radius: 10px;
+        box-shadow: 0px 8px 25px rgba(35, 149, 255, 0.49);
+        border-radius: 10px;
     }
     @media (max-width: 900px){
         .left-mybooking {
             display: none;
+        }
+        .details{
+            display:none
         }
     }
 </style>

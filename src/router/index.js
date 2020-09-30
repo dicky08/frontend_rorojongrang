@@ -5,6 +5,8 @@ import findTiket from '../views/Find_Tiket.vue'
 
 import myBooking from '../views/My_Booking.vue'
 
+import flightDetail from '../views/Flight_Detail.vue'
+
 import landing from '../views/landing.vue'
 import User from '../views/User.vue'
 
@@ -22,9 +24,16 @@ const routes = [
     component: findTiket
   },
   {
+
     path: '/mybooking',
     name: 'myBooking',
     component: myBooking
+  },
+  {
+    path: '/flightdetail',
+    name: 'flightDetail',
+    component: flightDetail
+
   },
   {
     path: '/landing',

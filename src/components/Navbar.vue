@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-transaparan">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container mt-3">
-      <a class="navbar-brand" href="#"><img src="../assets/assets/img/logoangkas.png"> Ankasa</a>
+      <a class="navbar-brand" href="#"><img src="../assets/assets/img/logoangkas.png" class="logo"> Ankasa</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,19 +28,21 @@
             <a class="nav-link" href="#">My Booking</a>
           </li>
         </ul>
-        <ul class="navbar-nav">
-           <li class="nav-item mr-5">
-            <a class="nav-link" href="#">
+        <ul class="navbar-nav phone">
+           <li class="nav-item mr-5 enpelove">
+          <img src="../assets/assets/img/dot (1).png" class="dot1">
+            <a href="#">
               <b-icon-envelope></b-icon-envelope>
             </a>
           </li>
-          <li class="nav-item mr-5">
-            <a class="nav-link" href="#">
+          <li class="nav-item mr-5 bell">
+          <img src="../assets/assets/img/dot (1).png" class="dot2">
+            <a href="#">
               <b-icon-bell></b-icon-bell>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item profile">
+            <a href="#">
              <div class="me">
                 <img src="../assets/assets/img/me.png" alt="">
              </div>
@@ -90,4 +92,45 @@ export default {
     border-radius: 50%;
     overflow: hidden;
   }
+  .enpelove,.bell {
+    position: relative;
+  }
+  .dot2 {
+    position: absolute;
+    top: 1px;
+    left: 5px;
+  }
+  .dot1 {
+    position: absolute;
+    top: 1px;
+    left: 8px;
+  }
+
+/* Break-Point */
+@media(max-width:600px) {
+  .navbar-brand {
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  .phone {
+
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  .bell {
+
+    margin-top: -32px;
+    margin-left: 50px;
+  }
+  .profile {
+    margin-top: -39px;
+    margin-left: 100px;
+  }
+  /* Nav-Link */
+  .nav-link:hover::after {
+  content: '';
+  display: inline;
+  border-bottom: 3px solid #2395FF;
+  }
+}
 </style>
