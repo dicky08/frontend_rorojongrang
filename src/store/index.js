@@ -22,10 +22,10 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {
+    findtiket,
+    users
   },
   modules: {
-    findtiket,
-    users,
     login ({ commit }, result) {
       return new Promise((resolve, reject) => {
         axios
