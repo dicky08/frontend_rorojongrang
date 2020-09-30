@@ -92,7 +92,7 @@ export default {
 .btn-tayo{
   background-color: #F0F0F0;
 }
-.modal-dialog {
+/* .modal-dialog {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -101,7 +101,7 @@ export default {
   z-index: 10040;
   overflow: auto;
   overflow-y: auto;
-}
+} */
 .ty-recent {
     display: flex;
     flex-direction: row;
