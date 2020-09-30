@@ -72,11 +72,11 @@
                  <img src="../assets/assets/img/btnback (1).png" alt="">
                </div>
                <div class="col-md-9 mb-2">Direct</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">Transit</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">Transit 2+</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
              </div>
              <hr style="margin: auto 20px;">
               <div class="row ml-1 facilities">
@@ -85,11 +85,11 @@
                  <img src="../assets/assets/img/btnback (1).png" alt="">
                </div>
                <div class="col-md-9 mb-2">Luggage</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">In-Flight Meal</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">Transit 2+</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
              </div>
              <hr style="margin: auto 20px;">
               <div class="row ml-1 departure">
@@ -98,13 +98,13 @@
                  <img src="../assets/assets/img/btnback (1).png" alt="">
                </div>
                <div class="col-md-9 mb-2">00:00 - 06:00</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">00:60 - 12:00</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">12:00 - 18:00</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">18:00 - 24:00</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
              </div>
              <hr style="margin: auto 20px;">
               <div class="row ml-1 time_arrived">
@@ -113,13 +113,13 @@
                  <img src="../assets/assets/img/btnback (1).png" alt="">
                </div>
                <div class="col-md-9 mb-2">00:00 - 06:00</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">00:60 - 12:00</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">12:00 - 18:00</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
                <div class="col-md-9 mb-2">18:00 - 24:00</div>
-               <div class="col-md"><img src="../assets/assets/img/checkbox.png" alt=""></div>
+               <input type="checkbox" aria-label="Checkbox for following text input" class="ml-3">
              </div>
              <hr style="margin: auto 20px;">
              <div class="row tiket-price mt-4 ml-2">
@@ -150,18 +150,19 @@
           </div>
         </div>
         <div class="col-lg mt-4">
-         <div class="box-ticket mb-3">
+         <div class="box-ticket mb-3" v-for="(datafindtiket, index) in allfindtiket.findtiket.data" :key="index">
            <div class="row airlines">
              <div class="col-lg-2">
-               <img src="../assets/assets/img/garuda.png" alt="">
+               {{datafindtiket.image_airlines}}
+               <img :src="`../assets/assets/img/${datafindtiket.image_airlines}`" alt="">
              </div>
-             <div class="col-lg-8">Garuda Indonesia</div>
+             <div class="col-lg-8">{{datafindtiket.name_airlines}}</div>
            </div>
              <div class="row airlines-detail ml-2">
-               <div class="col-lg-1  font-weight-bold">IDN</div>
+               <div class="col-lg-1  font-weight-bold">{{datafindtiket.id_departure_city}}</div>
                <p style="font-size:10px" class="text-muted time">12:33</p>
                <div class="col-lg-1 ml-4"><img src="../assets/assets/img/Vector (3).png" alt=""></div>
-               <div class="col-lg JPN">JPN</div>
+               <div class="col-lg JPN">{{datafindtiket.code_arrived}}</div>
                <p style="font-size:10px" class="text-muted time2">12:33</p>
                <div class="col-lg-2 text-time" style="width:40px">3 hours 11 minutes <br> <span style="padding-left:20px">(1 Transit)</span></div>
                <div class="col-lg text-center">
@@ -357,11 +358,25 @@
 <script>
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Find_Tiket',
   components: {
     Navbar,
     Footer
+  },
+  computed: {
+    ...mapGetters({
+      allfindtiket: 'findtiket/getAllTiket'
+    })
+  },
+  methods: {
+    ...mapActions({
+      actionsFindTiket: 'findtiket/getAllTicket'
+    })
+  },
+  mounted () {
+    this.actionsFindTiket()
   }
 }
 </script>
