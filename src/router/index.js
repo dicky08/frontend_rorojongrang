@@ -24,7 +24,7 @@ const routes = [
     component: findTiket
   },
   {
-    path: '/flightdetail',
+    path: '/flightdetail/:id_airlines',
     name: 'flightDetail',
     component: flightDetail
   },
