@@ -4,6 +4,7 @@ import findtiket from './findtiket/'
 import users from './users/'
 import axios from 'axios'
 import swal from 'sweetalert2'
+import auth from './auth'
 
 Vue.use(Vuex)
 
@@ -58,6 +59,7 @@ export default new Vuex.Store({
   },
   modules: {
     findtiket,
-    users
+    users,
+    auth
   }
 })
