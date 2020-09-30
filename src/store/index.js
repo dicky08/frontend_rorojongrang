@@ -4,14 +4,15 @@ import findtiket from './findtiket/'
 import users from './users/'
 import axios from 'axios'
 import auth from './auth/index'
+import transaction from './transaction/index'
 import swal from 'sweetalert2'
-import auth from './auth'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: localStorage.getItem('token')
+    token: localStorage.getItem('token'),
+    id: localStorage.getItem('id')
   },
   getters: {
     islogin (state) {
@@ -29,9 +30,7 @@ export default new Vuex.Store({
         axios
           .post('http://localhost:3000/api/users/login', result)
           .then(dt => {
-            console.log(
-              dt.data.status === 'not activated' && !dt.data.tokenLogin
-            )
+            console.log(result)
             if (dt.data.status === 'not activated') {
               swal.fire({
                 icon: 'error',
@@ -50,6 +49,7 @@ export default new Vuex.Store({
               console.log(dt)
               resolve(dt.data.message)
               localStorage.setItem('token', dt.data.tokenLogin)
+              localStorage.setItem('id', dt.data.id)
             }
           })
           .catch(err => {
@@ -61,6 +61,7 @@ export default new Vuex.Store({
   modules: {
     findtiket,
     users,
-    auth
+    auth,
+    transaction
   }
 })

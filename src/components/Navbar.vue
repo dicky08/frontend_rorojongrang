@@ -25,7 +25,7 @@
             <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModal">Find Ticket</a>
           </li>
           <li class="nav-item ml-4">
-            <a class="nav-link" href="#">My Booking</a>
+            <router-link to="/mybooking" class="nav-link" >My Booking</router-link>
           </li>
         </ul>
         <ul class="navbar-nav phone">

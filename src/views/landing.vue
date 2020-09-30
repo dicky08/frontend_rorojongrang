@@ -19,7 +19,7 @@
         <a class="nav-link " href="javascript:viod()" data-toggle="modal" data-target="#exampleModal"> Find tiket <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item link ml-2">
-        <a class="nav-link" href="#">MY booking</a>
+        <router-link to="/mybooking" class="nav-link">MY booking</router-link>
       </li>
     </ul>
     <a  href="/login" class="btn btn-primary btn-as mr-5 ">sign</a>
@@ -133,7 +133,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Modal from '../components/Modal'
 import Navbar from '../components/Navbar'
 // import Footer from '../components/Footer'
@@ -143,10 +143,25 @@ export default {
     Navbar
     // Footer
   },
+  data () {
+    return {
+      id_user: null
+    }
+  },
   computed: {
     ...mapState({
-      token: 'token'
+      token: 'token',
+      id: 'id'
+      // id: 'users/id'
     })
+  },
+  methods: {
+    ...mapActions({
+      getId: 'users/getDetailUsers'
+    })
+  },
+  mounted () {
+    this.getId(this.id)
   }
 }
 </script>

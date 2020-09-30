@@ -10,8 +10,6 @@
           />
           <div class="row">
             <div class="col-lg-6">
-    <h3>ROUTE</h3>{{$route.params.id_airlines}}
-    {{getFlightDetail.findtiket.data}}
               <h4 class="contact">Contact Person Details</h4>
             </div>
             <div class="col-lg-3">
@@ -26,21 +24,21 @@
         </div>
       </div>
     </div>
-    <div class="content" style="background-color:#F5F6FA; height:200vh">
+    <div class="content" style="background-color:#F5F6FA; height:200vh" v-for="(getUser , index) in getDetailUsers.users.data " :key="index">
           <div class="row">
             <div class="col-lg-6">
                   <div class="card1">
                     <!-- Material input -->
                     <div class="md-form">
-                      <input type="text" id="fullname" class="form-control">
+                      <input type="text" id="fullname" class="form-control" v-model="getUser.name" readonly>
                       <label for="fullname">Full Name</label>
                     </div>
                     <div class="md-form">
-                      <input type="email" id="email" class="form-control">
+                      <input type="email" id="email" class="form-control" v-model="getUser.email" readonly>
                       <label for="email">Email </label>
                     </div>
                     <div class="md-form">
-                      <input type="number" id="phone_number" class="form-control">
+                      <input type="number" id="phone_number" class="form-control" v-model="getUser.phone_number">
                       <label for="phone_number">Phone Number</label>
                     </div>
                     <div class="alert alert-danger" role="alert">
@@ -82,8 +80,13 @@
                     <div class="col-md-6">
                       <h5>Total Payement</h5>
                     </div>
-                    <div class="col-md-6">
-                      <h4>$ 135,00
+                    <div class="col-md-6" v-if="asurance===true">
+                      <h4>$ {{getFlight.price + 2.00}}
+                        <img src="../assets/assets/img/btnback (2).png" alt="">
+                      </h4>
+                    </div>
+                    <div v-else>
+                      <h4>$ {{getFlight.price}}
                         <img src="../assets/assets/img/btnback (2).png" alt="">
                       </h4>
                     </div>
@@ -106,20 +109,20 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" v-for="(getUser , index) in getDetailUsers.users.data " :key="index">
                             <!-- Material input -->
                             <div class="md-form">
-                              <input placeholder="Mr" type="text" id="title" class="form-control">
+                              <input placeholder="Mr" type="text" id="title" class="form-control" v-model="Mr" value="Mr" readonly>
                               <label for="title" class="font-weight-bold">Title</label>
                             </div>
                              <!-- Material input -->
                             <div class="md-form">
-                              <input placeholder="full_name" type="text" id="fullname" class="form-control">
+                              <input placeholder="full_name" type="text" id="fullname" class="form-control" v-model="getUser.name" readonly>
                               <label for="fullname" class="font-weight-bold">Full Name</label>
                             </div>
                              <!-- Material input -->
                             <div class="md-form">
-                              <input placeholder="nationality" type="text" id="nationality" class="form-control">
+                              <input placeholder="nationality" type="text" id="nationality" class="form-control" v-model="address" readonly>
                               <label for="nationality" class="font-weight-bold">Nationality</label>
                             </div>
                         </div>
@@ -139,7 +142,7 @@
                       <div class="col-lg-12 insurance">
                        <div class="row">
                          <div class="col-lg-6">
-                            <input type="checkbox" aria-label="Checkbox for following text input">
+                            <input type="checkbox" aria-label="Checkbox for following text input" v-model="asurance">
                           Travel Insurance
                        </div>
                        <div class="col-lg-6 text-right" style="color: rgb(158, 155, 155);">
@@ -151,7 +154,7 @@
                          <p>Get travel compensation up to $ 10.000,00</p>
                        </div>
                        <div class="buton">
-                         <span>Proceed to Payment</span>
+                         <span @click="process" style="cursor:pointer">Proceed to Payment</span>
                        </div>
                     </div>
                   </div>
@@ -246,7 +249,8 @@
 <script>
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
+import Swal from 'sweetalert2'
 export default {
   components: {
     Navbar,
@@ -254,21 +258,62 @@ export default {
   },
   data () {
     return {
-      id_airlines: null
+      id_airlines: null,
+      address: null,
+      amount: null,
+      asurance: null
     }
   },
   computed: {
+    ...mapState({
+      id: 'id'
+    }),
     ...mapGetters({
-      getFlightDetail: 'findtiket/getFlightDetail'
+      getFlightDetail: 'findtiket/getFlightDetail',
+      getDetailUsers: 'users/getDetailUsers'
     })
   },
   methods: {
     ...mapActions({
-      actionsFlightDetail: 'findtiket/getFlightDetail'
-    })
+      actionsFlightDetail: 'findtiket/getFlightDetail',
+      getId: 'users/getDetailUsers',
+      insertTransaction: 'transaction/insertTransaction'
+    }),
+    process () {
+      const dataAirlines = this.getFlightDetail.findtiket.data[0]
+      const id = this.id
+      const idAirlines = dataAirlines.id_airlines
+      this.amount = dataAirlines.price
+      if (this.asurance === true) {
+        this.amount += 2
+      } else {
+        this.amount = dataAirlines.price
+      }
+      const data = {
+        id_user: id,
+        id_airlines: idAirlines,
+        total_payment: this.amount
+      }
+      this.insertTransaction(data)
+        .then(res => {
+          setTimeout(() => {
+            window.location = '/mybooking'
+          }, 2000)
+          Swal.fire(
+            'Good job!',
+          `${res}`,
+          'success'
+          )
+        })
+    }
   },
   mounted () {
     this.actionsFlightDetail(this.$route.params.id_airlines)
+    this.getId(this.id)
+    const dataUsers = this.getDetailUsers.users.data[0]
+    const addres = dataUsers.address
+    const pecah = addres.split(',')
+    this.address = pecah[1]
   }
 }
 </script>

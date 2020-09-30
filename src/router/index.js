@@ -28,7 +28,8 @@ const routes = [
   {
     path: '/mybooking',
     name: 'myBooking',
-    component: myBooking
+    component: myBooking,
+    meta: { requiresAuth: true }
   },
   {
     path: '/flightdetail',

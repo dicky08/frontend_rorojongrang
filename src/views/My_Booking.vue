@@ -3,7 +3,7 @@
         <Navbar />
         <b-row>
             <b-col lg="12">
-                <b-row class="body text-center px-4">
+                <b-row class="body text-center px-4" v-for="(getData,index) in getDetailTransaksi.transaction.data" :key="index">
                     <b-col lg="3" class="left-mybooking mx-3 mt-4 mb-4">
                         <b-row class="mt-4">
                             <b-col lg="12">
@@ -15,8 +15,7 @@
                                 <b-button md variant="outline-primary">Select Photo</b-button>
                             </b-col>
                             <b-col lg="12" class="mt-4">
-                                <h4 style="font-size:20px;">Mochamad Sofyan</h4>
-                                <p style="color: #6B6B6B; font-size:14px;">Tegal, Indonesia</p>
+                                <p style="color: #6B6B6B; font-size:14px;"> {{getData.address}}</p>
                             </b-col>
                             <b-col lg="12" class="mt-3">
                                 <b-row>
@@ -27,9 +26,9 @@
                             <b-col lg="12">
                                 <b-row class="xcard mx-3">
                                     <b-col lg="12">
-                                        <p class="text-left mt-2 text-white">4441 1235 5512 5551</p>
+                                        <p class="text-left mt-2 text-white">{{getData.cards}}</p>
                                     </b-col>
-                                    <b-col lg="5" class="text-left mb-2" style="color: #AEFAFF;">X Card</b-col>
+                                    <b-col lg="5" class="text-left mb-2" style="color: #AEFAFF;">X Card </b-col>
                                     <b-col lg="5" class="text-right mb-2" style="color: #AEFAFF;">$ 1,440.2</b-col>
                                 </b-row>
                             </b-col>
@@ -90,7 +89,7 @@
                                        </b-row>
                                     </b-col>
                                     <b-col lg="12" class="text-left code">
-                                        <p>Garuda Indonesia, AB-221</p>
+                                        <p>{{getData.name_airlines}}, AB-221</p>
                                     </b-col>
                                     <b-col lg="12" class="divider"></b-col>
                                     <b-col lg="12">
@@ -121,7 +120,7 @@
                                        </b-row>
                                     </b-col>
                                     <b-col lg="12" class="text-left code">
-                                        <p>Garuda Indonesia, AB-221</p>
+                                        <p>{{getData.name_airlines}}, AB-221</p>
                                     </b-col>
                                     <b-col lg="12" class="divider"></b-col>
                                     <b-col lg="12">
@@ -148,11 +147,36 @@
 <script>
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { mapGetters, mapActions, mapState } from 'vuex'
+// import Swal from 'sweetalert2'
 export default {
   name: 'My-Booking',
   components: {
     Navbar,
     Footer
+  },
+  data () {
+    return {
+      id_transaksi: localStorage.getItem('id_transaction')
+    }
+  },
+  computed: {
+    ...mapState({
+      id: 'id'
+    }),
+    ...mapGetters({
+      // getTransaksi: 'transaction/getTransaction',
+      getDetailTransaksi: 'transaction/getDetailTransaksi'
+    })
+  },
+  methods: {
+    ...mapActions({
+      actionTransaksi: 'transaction/getTransaksi',
+      actDetailTransaksi: 'transaction/detailTransaksi'
+    })
+  },
+  mounted () {
+    this.actDetailTransaksi(this.id_transaksi)
   }
 }
 </script>

@@ -361,7 +361,7 @@ export default {
 .airlines img {
   margin-left: 20px;
 }
-.select .selects {
+.selects {
   background: #2395FF;
 box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
 border-radius: 10px;

@@ -2,43 +2,37 @@ import axios from 'axios'
 const state = () => {
   return {
     allData: {
-      users: []
+      transaction: []
     }
   }
 }
 const getters = {
-  getAllusers (state) {
-    return state.allData
-  },
-  getDetailUsers (state) {
+  getDetailTransaksi (state) {
     return state.allData
   }
 }
 const mutations = {
-  SET_DATA_USERS (state, payload) {
-    state.allData.users = payload
-  },
-  SET_DETAIL_USERS (state, payload) {
-    state.allData.users = payload
+  SET_DETAIL_TRANSACTION (state, payload) {
+    state.allData.transaction = payload
   }
 }
 const actions = {
-  getAllUsers (context, payload) {
+  insertTransaction (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get('http://localhost:3000/api/users/getall')
+      axios.post('http://localhost:3000/api/transaction/insert', payload)
         .then((result) => {
-          context.commit('SET_DATA_USERS', result.data)
-          console.log(result.data)
+          resolve(result.data.message)
+          localStorage.setItem('id_transaction', result.data.data.insertId)
         }).catch((err) => {
           console.log(err.message)
         })
     })
   },
-  getDetailUsers (context, payload) {
+  detailTransaksi (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/api/users/getDetail/${payload}`)
+      axios.get(`http://localhost:3000/api/transaction/getDetail/${payload}`)
         .then((result) => {
-          context.commit('SET_DETAIL_USERS', result.data)
+          context.commit('SET_DETAIL_TRANSACTION', result.data)
           console.log(result.data)
         }).catch((err) => {
           console.log(err.message)
