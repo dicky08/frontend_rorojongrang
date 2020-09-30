@@ -14,8 +14,8 @@
         </div>
         <div class="m-5">
           <h2 class="textLogin"><strong>Login</strong></h2>
-          <ValidationObserver>
-          <form @submit.prevent="login" >
+          <ValidationObserver v-slot="{ handleSubmit }" >
+          <form @submit.prevent="handleSubmit(login)" >
              <div class="md-form input-with-post-icon">
             <ValidationProvider
               name="Email"
