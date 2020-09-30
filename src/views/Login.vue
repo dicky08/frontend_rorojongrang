@@ -10,7 +10,7 @@
           <strong class="pl-3">Ankasa</strong>
         </div>
         <div class="back m-5">
-          <router-link to="/register"><img src="../assets/assets/img/btnback.png" alt=""></router-link>
+          <img src="../assets/assets/img/btnback.png" alt="">
         </div>
         <div class="m-5">
           <h2 class="textLogin"><strong>Login</strong></h2>
@@ -52,7 +52,7 @@
           <p></p>
           <p>Did you forget your password ?</p>
           <p></p>
-          <router-link to="/forgetpassword"><p>Tap here for reset</p></router-link>
+          <router-link to="/"><p>Tap here for reset</p></router-link>
         </div>
         <div>
           <img class="divider ml-5" src="../assets/assets/img/divider.png" alt="">
@@ -60,9 +60,7 @@
         <div class="signIn">
           <h6>or sign in with</h6>
           <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/google.png" alt=""></b-button>
-          <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/fb2.png" alt=""></b-button>
-          <p class="pt-3">Don't have an account yet ?</p>
-          <router-link to="/register">Register here ...</router-link>
+          <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/fb.png" alt=""></b-button>
         </div>
       </div>
     </div>
