@@ -10,27 +10,50 @@
           <strong class="pl-3">Ankasa</strong>
         </div>
         <div class="back m-5">
-          <img src="../assets/assets/img/btnback.png" alt="">
+          <router-link to="/register"><img src="../assets/assets/img/btnback.png" alt=""></router-link>
         </div>
         <div class="m-5">
           <h2 class="textLogin"><strong>Login</strong></h2>
-          <div class="md-form input-with-post-icon">
-            <input type="text" id="suffixInside" class="form-control">
+          <ValidationObserver>
+          <form @submit.prevent="login" >
+             <div class="md-form input-with-post-icon">
+            <ValidationProvider
+              name="Email"
+              rules="required|email"
+              v-slot="{ errors }"
+            >
+            <input v-model="form.email" type="text" id="suffixInside" class="form-control">
             <label for="suffixInside">Username </label>
+            <div class="text-danger">
+              {{errors[0]}}
+            </div>
+            </ValidationProvider>
           </div>
           <p></p>
           <div class="md-form input-with-post-icon">
             <i class="fas fa-eye input-prefix"></i>
-            <input type="text" id="suffixInside" class="form-control">
+            <input type="password" id="suffixInside" class="form-control">
+            <ValidationProvider
+              name="Password"
+              rules="required"
+              v-slot="{ errors }"
+              >
+            <input v-model="form.password" type="text" id="suffixInside" class="form-control">
             <label for="suffixInside">Password </label>
+              <div class="text-danger">
+              {{errors[0]}}
+            </div>
+            </ValidationProvider>
           </div>
           <div>
-            <b-button class="p-2" block variant="primary"><strong>Sign In</strong></b-button>
+            <b-button type="submit" class="p-2" block variant="primary"><strong>Sign In</strong></b-button>
           </div>
+          </form>
+      </ValidationObserver>
           <p></p>
           <p>Did you forget your password ?</p>
           <p></p>
-          <router-link to="/"><p>Tap here for reset</p></router-link>
+          <router-link to="/forgetpassword"><p>Tap here for reset</p></router-link>
         </div>
         <div>
           <img class="divider ml-5" src="../assets/assets/img/divider.png" alt="">
@@ -38,12 +61,48 @@
         <div class="signIn">
           <h6>or sign in with</h6>
           <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/google.png" alt=""></b-button>
-          <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/fb.png" alt=""></b-button>
+          <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/fb2.png" alt=""></b-button>
+          <p class="pt-3">Don't have an account yet ?</p>
+          <router-link to="/register">Register here ...</router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+import Swal from 'sweetalert2'
+export default {
+  data () {
+    return {
+      form: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      onlogin: 'login'
+    }),
+    login () {
+      this.onlogin(this.form).then(res => {
+        setTimeout(() => {
+          window.location = '/'
+        }, 2000)
+        Swal.fire(
+          'Good job!',
+          `${res}`,
+          'success'
+        )
+      }).catch(err => {
+        alert(err)
+      })
+    }
+  }
+}
+</script>
 
 <style scoped>
 .overlay {

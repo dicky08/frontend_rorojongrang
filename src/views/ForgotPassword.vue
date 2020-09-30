@@ -6,11 +6,11 @@
       </div>
       <div class="login col-lg-4">
         <div class="head m-5">
-          <img src="../assets/assets/img/blueAirplane.png" alt="">
+          <router-link to="/login"><img src="../assets/assets/img/blueAirplane.png" alt=""></router-link>
           <strong class="pl-3">Ankasa</strong>
         </div>
         <div class="back m-5">
-          <img src="../assets/assets/img/btnback.png" alt="">
+          <router-link to="/login"><img src="../assets/assets/img/btnback.png" alt=""></router-link>
         </div>
         <div class="m-5">
           <h2 class="textLogin"><strong>Forgot Password</strong></h2>
