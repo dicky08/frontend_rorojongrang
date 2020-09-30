@@ -46,6 +46,7 @@
                       Make sure the customer data is correct
                     </div>
                   </div>
+                  {{allfindtiket}}
             </div>
             <div class="col-lg-6">
                 <div class="card2">
@@ -244,10 +245,24 @@
 <script>
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   components: {
     Navbar,
     Footer
+  },
+  computed: {
+    ...mapGetters({
+      allfindtiket: 'findtiket/getAllTiket'
+    })
+  },
+  methods: {
+    ...mapActions({
+      actionsFindTiket: 'findtiket/getAllTicket'
+    })
+  },
+  mounted () {
+    this.actionsFindTiket()
   }
 }
 </script>
