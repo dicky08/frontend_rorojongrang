@@ -44,8 +44,13 @@
           <li class="nav-item profile">
             <a href="#">
              <div class="me">
-                <img src="../assets/assets/img/me.png" alt="">
+                <img class="image-me" :src="`http://localhost:3000/img/${detailUser.detail.image}`" alt="">
              </div>
+            </a>
+          </li>
+          <li class="nav-item profile ml-3">
+            <a href="#">
+             <button @click="logout">logout</button>
             </a>
           </li>
         </ul>
@@ -55,8 +60,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  computed: {
+    ...mapState({
+      detailUser: 'users'
+    })
+  },
+  methods: {
+    logout () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('id')
+      window.location = '/'
+    }
+  }
 }
 </script>
 
@@ -67,6 +85,10 @@ export default {
     border-radius: 10px;
     width: 250px;
     height: 40px;
+  }
+  .image-me {
+      max-width: 100%;
+      height: auto;
   }
   /* Font */
   .navbar-brand,.nav-item {

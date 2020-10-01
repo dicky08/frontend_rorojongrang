@@ -23,6 +23,7 @@ const actions = {
         .then((result) => {
           resolve(result.data.message)
           localStorage.setItem('id_transaction', result.data.data.insertId)
+          console.log(result.data)
         }).catch((err) => {
           console.log(err.message)
         })
