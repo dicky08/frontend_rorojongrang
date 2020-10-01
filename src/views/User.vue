@@ -82,7 +82,7 @@
                     </div>
                         <div class="form-group">
                         <label for="exampleFormControlInput1">address</label>
-                        <input type="text" class="form-control" readonly value="jl santai" id="exampleFormControlInput1" placeholder="city">
+                        <input type="text" class="form-control"  v-model="detailUser.detail.address" id="exampleFormControlInput1" placeholder="city">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Post Code</label>
