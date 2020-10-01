@@ -1,6 +1,6 @@
 <template>
     <div class="wrap-content">
-        <Navbar />
+        <Navbar :img="getDetailUsers.users.data[0].image" />
     <div class="container-fluid content pl-5 pr-5">
        <div class="" style=" display: flex; justify-content: space-around; height: 100vh">
            <div  class="col-md-3 bg-white">
@@ -9,6 +9,7 @@
                </div>
                <div class="text-center mt-3" >
                     <label class="fileContainer">
+                      {{getDetailUsers}}
                         <span>image upload  / change image</span>
                         <input  @change="uploadfile" type="file"/>
                     </label>
@@ -125,18 +126,20 @@ export default {
   },
   computed: {
     ...mapGetters({
-      allUsers: 'users/getAllusers'
+      allUsers: 'users/getAllusers',
+      getDetailUsers: 'users/getDetailUsers'
     }),
     ...mapState({
-      detailUser: 'users'
+      detailUser: 'users',
+      id: 'id'
     })
   },
-
   methods: {
     ...mapActions({
       actionsAllUsers: 'users/getAllUsers',
       detail: 'users/getDetail',
-      updateuser: 'users/updateuser'
+      updateuser: 'users/updateuser',
+      getId: 'users/getDetailUsers'
     }),
     uploadfile: function (e) {
       this.form.files = e.target.files[0]
@@ -168,6 +171,7 @@ export default {
   mounted () {
     this.actionsAllUsers()
     this.detail()
+    this.getId(this.id)
   }
 }
 </script>

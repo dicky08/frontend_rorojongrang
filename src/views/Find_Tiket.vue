@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar :img="getDetailUsers.users.data[0].image" />
     <div class="row">
       <div class="box d-flex">
         <div class="col-md-6 ml-5">
@@ -227,7 +227,7 @@
 <script>
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
   name: 'Find_Tiket',
   components: {
@@ -235,8 +235,12 @@ export default {
     Footer
   },
   computed: {
+    ...mapState({
+      id: 'id'
+    }),
     ...mapGetters({
-      allfindtiket: 'findtiket/getAllTiket'
+      allfindtiket: 'findtiket/getAllTiket',
+      getDetailUsers: 'users/getDetailUsers'
     })
   },
   methods: {
@@ -244,7 +248,8 @@ export default {
       actionsFindTiket: 'findtiket/getAllTicket',
       actionsGetDetailTiket: 'findtiket/getDetailTicket',
       actionsFilterTiketTransit: 'findtiket/filterTiketTransit',
-      actionsFilterTiketFacilities: 'findtiket/filterTiketFacilities'
+      actionsFilterTiketFacilities: 'findtiket/filterTiketFacilities',
+      getId: 'users/getDetailUsers'
     }),
     direct (value) {
       this.actionsFilterTiketTransit(value)
@@ -270,6 +275,7 @@ export default {
   },
   mounted () {
     this.actionsFindTiket()
+    this.getId(this.id)
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div style="overflow-y:hidden">
-    <Navbar />
+    <Navbar :img="getDetailUsers.users.data[0].image"/>
     <div class="row">
       <div class="box">
         <div class="col-lg-12 ml-5 items">

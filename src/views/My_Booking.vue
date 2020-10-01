@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <Navbar />
+        <Navbar :img="getDetailUsers.users.data[0].image" />
         <b-row>
             <b-col lg="12">
                 <b-row class="body text-center px-4" v-for="(getData,index) in getDetailTransaksi.transaction.data" :key="index">
@@ -169,17 +169,20 @@ export default {
     }),
     ...mapGetters({
       // getTransaksi: 'transaction/getTransaction',
-      getDetailTransaksi: 'transaction/getDetailTransaksi'
+      getDetailTransaksi: 'transaction/getDetailTransaksi',
+      getDetailUsers: 'users/getDetailUsers'
     })
   },
   methods: {
     ...mapActions({
       actionTransaksi: 'transaction/getTransaksi',
-      actDetailTransaksi: 'transaction/detailTransaksi'
+      actDetailTransaksi: 'transaction/detailTransaksi',
+      getId: 'users/getDetailUsers'
     })
   },
   mounted () {
     this.actDetailTransaksi(this.id_transaksi)
+    this.getId(this.id)
   }
 }
 </script>
