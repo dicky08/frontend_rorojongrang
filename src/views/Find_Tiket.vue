@@ -229,6 +229,11 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
+  data () {
+    return {
+      halo: JSON.parse(localStorage.getItem('search'))
+    }
+  },
   name: 'Find_Tiket',
   components: {
     Navbar,
@@ -240,6 +245,7 @@ export default {
     }),
     ...mapGetters({
       allfindtiket: 'findtiket/getAllTiket',
+      resultSearch: 'landing/getSearch',
       getDetailUsers: 'users/getDetailUsers'
     })
   },
@@ -274,6 +280,7 @@ export default {
     // }
   },
   mounted () {
+    this.actionsFindTiket(this.halo)
     this.actionsFindTiket()
     this.getId(this.id)
   }

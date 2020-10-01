@@ -6,6 +6,7 @@ import axios from 'axios'
 import auth from './auth/index'
 import transaction from './transaction/index'
 import swal from 'sweetalert2'
+import landing from './landing/'
 
 Vue.use(Vuex)
 
@@ -62,6 +63,7 @@ export default new Vuex.Store({
     findtiket,
     users,
     auth,
+    landing,
     transaction
   }
 })

@@ -25,8 +25,9 @@ const mutations = {
 }
 const actions = {
   getAllTicket (context, payload) {
+    console.log(payload.from)
     return new Promise((resolve, reject) => {
-      axios.get('http://localhost:3000/api/airlines/getall')
+      axios.get(`http://localhost:3000/api/airlines/getall?from=${payload.from}&to=${payload.to}`)
         .then((result) => {
           context.commit('SET_DATA', result.data)
           console.log(result.data)
