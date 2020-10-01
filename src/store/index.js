@@ -4,6 +4,7 @@ import findtiket from './findtiket/'
 import users from './users/'
 import axios from 'axios'
 import auth from './auth/index'
+import transaction from './transaction/index'
 import swal from 'sweetalert2'
 import landing from './landing/'
 
@@ -30,9 +31,7 @@ export default new Vuex.Store({
         axios
           .post('http://localhost:3000/api/users/login', result)
           .then(dt => {
-            console.log(
-              dt.data.status === 'not activated' && !dt.data.tokenLogin
-            )
+            console.log(result)
             if (dt.data.status === 'not activated') {
               swal.fire({
                 icon: 'error',
@@ -64,6 +63,7 @@ export default new Vuex.Store({
     findtiket,
     users,
     auth,
-    landing
+    landing,
+    transaction
   }
 })

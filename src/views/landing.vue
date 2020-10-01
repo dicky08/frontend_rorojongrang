@@ -27,7 +27,7 @@
 </nav>
 </div>
 <div v-else >
-    <Navbar />
+    <Navbar :img="getDetailUsers.users.data[0].image" />
 </div>
 <!-- end navbar -->
 <!-- main -->
@@ -35,7 +35,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="container">
-        <h1>find your <span class="text-primary">flight</span></h1>
+        <h1>find your<span class="text-primary">flight</span></h1>
         <span>and explore the world with us</span>
       </div>
      <div  class="image-down mt-5">
@@ -134,7 +134,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import Modal from '../components/Modal'
 import Navbar from '../components/Navbar'
 // import Footer from '../components/Footer'
@@ -144,10 +144,27 @@ export default {
     Navbar
     // Footer
   },
+  data () {
+    return {
+      id_user: null
+    }
+  },
   computed: {
     ...mapState({
-      token: 'token'
+      token: 'token',
+      id: 'id'
+    }),
+    ...mapGetters({
+      getDetailUsers: 'users/getDetailUsers'
     })
+  },
+  methods: {
+    ...mapActions({
+      getId: 'users/getDetailUsers'
+    })
+  },
+  mounted () {
+    this.getId(this.id)
   }
 }
 </script>

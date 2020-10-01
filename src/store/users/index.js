@@ -11,10 +11,16 @@ const state = () => {
 const getters = {
   getAllusers (state) {
     return state.allData
+  },
+  getDetailUsers (state) {
+    return state.allData
   }
 }
 const mutations = {
   SET_DATA_USERS (state, payload) {
+    state.allData.users = payload
+  },
+  SET_DETAIL_USERS (state, payload) {
     state.allData.users = payload
   },
   set_detail_user (state, payload) {
@@ -23,18 +29,18 @@ const mutations = {
   }
 }
 const actions = {
-  // getAllUsers (context, payload) {
-  //   return new Promise((resolve, reject) => {
-  //     axios.get('http://localhost:3000/api/users/getall')
-  //       .then((result) => {
-  //         console.log(result)
-  //         context.commit('SET_DATA_USERS', result.data)
-  //         console.log(result.data)
-  //       }).catch((err) => {
-  //         console.log(err.message)
-  //       })
-  //   })
-  // },
+  getAllUsers (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios.get(`http://localhost:3000/api/users/getall/${id}`)
+        .then((result) => {
+          console.log(result)
+          context.commit('SET_DATA_USERS', result.data)
+          console.log(result.data)
+        }).catch((err) => {
+          console.log(err.message)
+        })
+    })
+  },
   getDetail ({ commit }, result) {
     return new Promise((resolve, reject) => {
       axios.get(`http://localhost:3000/api/users/getDetail/${id}`).then(dt => {
@@ -49,6 +55,17 @@ const actions = {
       }).catch(err => {
         reject(err)
       })
+    })
+  },
+  getDetailUsers (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios.get(`http://localhost:3000/api/users/getDetail/${payload}`)
+        .then((result) => {
+          context.commit('SET_DETAIL_USERS', result.data)
+          console.log(result.data)
+        }).catch((err) => {
+          console.log(err.message)
+        })
     })
   }
 }

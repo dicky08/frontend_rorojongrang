@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar :img="getDetailUsers.users.data[0].image" />
     <div class="row">
       <div class="box d-flex">
         <div class="col-md-6 ml-5">
@@ -179,7 +179,7 @@
                         <div class="col-lg price text-center">$ {{datafindtiket.price}}<span>/pax</span></div>
                         <div class="col-lg ">
                           <div class="select">
-                            <router-link :to="`/flightdetail/${datafindtiket.id_airlines}`" class="selects" style="box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);height:40px;width:100px">Select</router-link>
+                            <router-link :to="`/flightdetail/${datafindtiket.id_airlines}`" class="nav-link" style="box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);height:40px;width:100px">Select</router-link>
                           </div>
                         </div>
                       </div>
@@ -190,6 +190,36 @@
                     </div>
                     </div>
                   </div>
+          <div class="box-ticket2">
+             <div class="card1 mt-5">
+                <div class="found-mobile ">6 flight found</div>
+                <div class="filter-mobile ">FIlter
+                  <b-icon-arrow-down-up></b-icon-arrow-down-up>
+                </div>
+              </div>
+              <div class="card2" v-for="(datafindtiket, index) in allfindtiket.findtiket.data" :key="index">
+                  <div class="row card-airlines">
+                        <div class="col-4">
+                           <img :src="`http://localhost:3000/img/${datafindtiket.image_airlines}`" alt="">
+                        </div>
+                      <div class="col-8">
+                        <div class="row country-mobile">
+                          <img src="../assets/assets/img/Vector (3).png" class="vektor">
+                          <div class="col-8">{{datafindtiket.code_departure}}</div>
+                          <div class="col-4">{{datafindtiket.code_destination}}</div>
+                        </div>
+                        <div class="row time-mobile">
+                          <div class="col-8">12:33</div>
+                          <div class="col-4">18:33</div>
+                        </div>
+                        <div class="row mt-3 long-time">
+                          <div class="col-7">3 hours 11 minutes</div>
+                          <div class="col-5">$ {{datafindtiket.price}}</div>
+                        </div>
+                      </div>
+               </div>
+              </div>
+             </div>
     <Footer/>
   </div>
 </template>
@@ -197,7 +227,7 @@
 <script>
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -210,9 +240,13 @@ export default {
     Footer
   },
   computed: {
+    ...mapState({
+      id: 'id'
+    }),
     ...mapGetters({
       allfindtiket: 'findtiket/getAllTiket',
-      resultSearch: 'landing/getSearch'
+      resultSearch: 'landing/getSearch',
+      getDetailUsers: 'users/getDetailUsers'
     })
   },
   methods: {
@@ -220,7 +254,8 @@ export default {
       actionsFindTiket: 'findtiket/getAllTicket',
       actionsGetDetailTiket: 'findtiket/getDetailTicket',
       actionsFilterTiketTransit: 'findtiket/filterTiketTransit',
-      actionsFilterTiketFacilities: 'findtiket/filterTiketFacilities'
+      actionsFilterTiketFacilities: 'findtiket/filterTiketFacilities',
+      getId: 'users/getDetailUsers'
     }),
     direct (value) {
       this.actionsFilterTiketTransit(value)
@@ -246,6 +281,8 @@ export default {
   },
   mounted () {
     this.actionsFindTiket(this.halo)
+    this.actionsFindTiket()
+    this.getId(this.id)
   }
 }
 </script>
@@ -367,7 +404,7 @@ export default {
 .airlines img {
   margin-left: 20px;
 }
-.select .selects {
+.select .nav-link {
   background: #2395FF;
 box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
 border-radius: 10px;
@@ -376,8 +413,8 @@ color: white;
 height: 40px;
 cursor: pointer;
 }
-.select .selects{
-  line-height: 40px;
+.select .nav-link{
+  line-height: 25px;
   text-align: center;
   font-size: 14px;
 }

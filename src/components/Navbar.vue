@@ -25,7 +25,7 @@
             <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModal">Find Ticket</a>
           </li>
           <li class="nav-item ml-4">
-            <a class="nav-link" href="#">My Booking</a>
+            <router-link to="/mybooking" class="nav-link" > My Booking</router-link>
           </li>
         </ul>
         <ul class="navbar-nav phone">
@@ -44,7 +44,7 @@
           <li class="nav-item profile">
             <a href="#">
              <div class="me">
-                <img class="image-me" :src="`http://localhost:3000/img/${detailUser.detail.image}`" alt="">
+                <img class="image-me" :src="`http://localhost:3000/img/${img}`" alt="">
              </div>
             </a>
           </li>
@@ -63,6 +63,7 @@
 import { mapState } from 'vuex'
 export default {
   name: 'Navbar',
+  props: ['img'],
   computed: {
     ...mapState({
       detailUser: 'users'
@@ -72,6 +73,7 @@ export default {
     logout () {
       localStorage.removeItem('token')
       localStorage.removeItem('id')
+      localStorage.removeItem('id_transaction')
       window.location = '/'
     }
   }

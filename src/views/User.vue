@@ -1,6 +1,6 @@
 <template>
     <div class="wrap-content">
-        <Navbar />
+        <Navbar :img="getDetailUsers.users.data[0].image" />
     <div class="container-fluid content pl-5 pr-5">
        <div class="" style=" display: flex; justify-content: space-around; height: 100vh">
            <div  class="col-md-3 bg-white">
@@ -9,6 +9,7 @@
                </div>
                <div class="text-center mt-3" >
                     <label class="fileContainer">
+                      {{getDetailUsers}}
                         <span>image upload  / change image</span>
                         <input  @change="uploadfile" type="file"/>
                     </label>
@@ -22,7 +23,7 @@
                    <span class="text-primary">+ add</span>
                </div>
                <div class="mt-3 card-wraper">
-                   <span>4441 1235 5512 5551</span>
+                   <span>{{detailUser.detail.cards}}</span>
                    <div class="card-saldo">
                        <p>x-card</p>
                        <p>$ 1,440.2</p>
@@ -62,6 +63,10 @@
                         <label for="exampleFormControlInput1">phone number</label>
                         <input type="text"  v-model="detailUser.detail.phone_number" class="form-control" id="exampleFormControlInput1" placeholder="phone number">
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Cards</label>
+                        <input type="number"  v-model="detailUser.detail.cards" class="form-control" id="exampleFormControlInput1" placeholder="Cards">
+                    </div>
                     <div class="acount-set">
                         <h5 class="text-primary">acount seting  <b-icon icon="caret-right"  aria-hidden="true"></b-icon></h5>
                     </div>
@@ -78,7 +83,7 @@
                     </div>
                         <div class="form-group">
                         <label for="exampleFormControlInput1">address</label>
-                        <input type="text" class="form-control" readonly value="jl santai" id="exampleFormControlInput1" placeholder="city">
+                        <input type="text" class="form-control"  v-model="detailUser.detail.address" id="exampleFormControlInput1" placeholder="city">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Post Code</label>
@@ -114,24 +119,27 @@ export default {
         city: '',
         Address: '',
         post: '',
+        cards: '',
         files: ''
       }
     }
   },
   computed: {
     ...mapGetters({
-      allUsers: 'users/getAllusers'
+      allUsers: 'users/getAllusers',
+      getDetailUsers: 'users/getDetailUsers'
     }),
     ...mapState({
-      detailUser: 'users'
+      detailUser: 'users',
+      id: 'id'
     })
   },
-
   methods: {
     ...mapActions({
       actionsAllUsers: 'users/getAllUsers',
       detail: 'users/getDetail',
-      updateuser: 'users/updateuser'
+      updateuser: 'users/updateuser',
+      getId: 'users/getDetailUsers'
     }),
     uploadfile: function (e) {
       this.form.files = e.target.files[0]
@@ -145,7 +153,7 @@ export default {
       formdata.append('address', this.detailUser.detail.address)
       formdata.append('phone_number', this.detailUser.detail.phone_number)
       formdata.append('post_code', this.detailUser.detail.post_code)
-      formdata.append('card', this.detailUser.detail.card)
+      formdata.append('cards', this.detailUser.detail.cards)
       this.updateuser(formdata).then(dt => {
         setTimeout(() => {
           window.location = '/user'
@@ -163,6 +171,7 @@ export default {
   mounted () {
     this.actionsAllUsers()
     this.detail()
+    this.getId(this.id)
   }
 }
 </script>
