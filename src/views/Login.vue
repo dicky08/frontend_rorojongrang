@@ -37,7 +37,7 @@
               rules="required"
               v-slot="{ errors }"
               >
-            <input v-model="form.password" type="text" id="suffixInside" class="form-control">
+            <input v-model="form.password" type="password" id="suffixInside" class="form-control">
             <label for="suffixInside">Password </label>
               <div class="text-danger">
               {{errors[0]}}
@@ -60,7 +60,7 @@
         <div class="signIn">
           <h6>or sign in with</h6>
           <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/google.png" alt=""></b-button>
-          <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/fb.png" alt=""></b-button>
+          <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/facebook.png" alt=""></b-button>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@
         <a class="nav-link " href="javascript:viod()" data-toggle="modal" data-target="#exampleModal"> Find tiket <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item link ml-2">
-        <a class="nav-link" href="#">MY booking</a>
+        <router-link class="nav-link" to="/mybooking">MY booking</router-link>
       </li>
     </ul>
     <a  href="/login" class="btn btn-primary btn-as mr-5 ">sign</a>
@@ -61,7 +61,8 @@
     <span class="text-primary">view all</span>
   </div>
 </div>
-<div class="row card-trending mt-4">
+
+<!-- <div class="row card-trending mt-4">
   <div class="column">
     <div class="card">
       <img src="../assets/assets/img/card.png" alt="" srcset="">
@@ -87,7 +88,7 @@
       <img style="widows: 100px;" src="../assets/assets/img/card.png" alt="" srcset="">
     </div>
   </div>
-</div>
+</div> -->
 <div  class="top-destination mt-5">
   <div  class="container tp-dstn">
     <div class="asu">

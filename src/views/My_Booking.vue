@@ -100,7 +100,7 @@
                                                 <p class="waiting">Waiting for payment</p>
                                             </b-col>
                                             <b-col lg="7" md="5" sm="4" cols="4">
-                                                <p class="details mr-3" style="text-align:right;">View Details</p>
+                                                <p data-toggle="modal" data-target="#exampleModal" class="details mr-3" style="text-align:right;">View Details</p>
                                             </b-col>
                                         </b-row>
                                     </b-col>
@@ -143,16 +143,19 @@
             </b-col>
             <Footer />
         </b-row>
+        <Modaldetail />
     </div>
 </template>
 <script>
 import Navbar from '../components/Navbar'
+import Modaldetail from '../components/ModalDetai'
 import Footer from '../components/Footer'
 export default {
   name: 'My-Booking',
   components: {
     Navbar,
-    Footer
+    Footer,
+    Modaldetail
   }
 }
 </script>

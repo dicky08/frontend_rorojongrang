@@ -10,6 +10,7 @@ import ForgotPassword from '../views/ForgotPassword.vue'
 import flightDetail from '../views/Flight_Detail.vue'
 import landing from '../views/landing.vue'
 import User from '../views/User.vue'
+import DetailBooking from '../views/DetailBooking.vue'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: landing
+  },
+  {
+    path: '/DetailBooking',
+    name: 'Detail',
+    component: DetailBooking
   },
   {
     path: '/findtiket',
@@ -34,7 +40,6 @@ const routes = [
     path: '/flightdetail',
     name: 'flightDetail',
     component: flightDetail
-
   },
   {
     path: '/landing',
@@ -46,7 +51,6 @@ const routes = [
     name: 'flightDetail',
     component: flightDetail,
     meta: { requiresAuth: true }
-
   },
   {
     path: '/user',

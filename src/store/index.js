@@ -3,15 +3,16 @@ import Vuex from 'vuex'
 import findtiket from './findtiket/'
 import users from './users/'
 import axios from 'axios'
+import auth from './auth/index'
 import swal from 'sweetalert2'
-import auth from './auth'
 import landing from './landing/'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: localStorage.getItem('token')
+    token: localStorage.getItem('token'),
+    id: localStorage.getItem('id')
   },
   getters: {
     islogin (state) {
@@ -50,6 +51,7 @@ export default new Vuex.Store({
               console.log(dt)
               resolve(dt.data.message)
               localStorage.setItem('token', dt.data.tokenLogin)
+              localStorage.setItem('id', dt.data.id)
             }
           })
           .catch(err => {

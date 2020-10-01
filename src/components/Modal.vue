@@ -66,7 +66,7 @@
                     <span>Which class do you want ?</span>
                     <div class="cek">
                         <div v-for="(item,index) in class_airlines" :key="index" :value="item.name_class" >
-                            <input type="checkbox"  id="item.name_class" v-model="search.airlines_class" @change="check($event)">
+                            <input type="checkbox"  id="item.name_class" >
                             <label for="">{{item.name_class}}</label>
                         </div>
                     </div>
