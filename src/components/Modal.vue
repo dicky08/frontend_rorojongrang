@@ -1,45 +1,54 @@
 <template>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" hide-header>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div   class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body">
         <div class="mdl">
-            <div >
-                <h5 class="font-weight-bold">hey,</h5>
-                <h5 class="font-weight-bold">where you want go??</h5>
+            <div>
+                <h5 class="font-weight-bold">Hey,</h5>
+                <h5 class="font-weight-bold">Where you want go??</h5>
                 <div class="ty-recent">
-                    <h4 class="text-primary">recently searched</h4>
+                    <h4 class="text-primary">Recently searched</h4>
                     <b-icon stacked icon="arrow-right" variant="primary" style="width: 30px" ></b-icon>
                 </div>
-                <div  class="box-form mt-3">
-                    <div class="from-to">
-                        <span>from</span>
-                        <span>to</span>
+                <div class="box-form mt-3 row" >
+                  <div class="col-lg-12">
+                    <div class="row my-2">
+                      <div class="col-lg-5">
+                        <div class="row text-left ml-1" >
+                          <div class="col-lg-12">From</div>
+                            <b-form-select @change="depart" v-model="search.from" class="my-2">
+                              <b-form-select-option v-for="(item,index) in dep_city" :key="index" :value="item.name_departure_city" required>
+                               {{item.name_departure_city}}
+                              </b-form-select-option>
+                            </b-form-select>
+                          <div class="col-lg-12">Indonesia</div>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 my-4">
+                        <b-icon stacked icon="arrow-left-right " variant="primary" style="width: 40px" ></b-icon>
+                      </div>
+                      <div class="col-lg-5">
+                        <div class="row text-left mr-1">
+                          <div class="col-lg-12">To</div>
+                            <b-form-select @change="destination" v-model="search.to" class="my-2">
+                              <b-form-select-option v-for="(item,index) in dest_city" :key="index" :value="item.city_arrived" required>
+                               {{item.city_arrived}}
+                              </b-form-select-option>
+                            </b-form-select>
+                          <div class="col-lg-12">Japan</div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="arrow">
-                        <h2 class="font-weight-bold">medan</h2>
-                        <b-icon stacked icon="arrow-left-right" variant="primary" style="width: 40px" ></b-icon>
-                        <h2 class="font-weight-bold">Tokyo</h2>
-                    </div>
-                    <div class="ctry">
-                        <h5>indonesia</h5>
-                        <h5>jepang</h5>
-                    </div>
+                  </div>
                 </div>
                 <div class="type mt-4">
                     <button class="btn btn-primary">roundtrip</button>
                     <button class="btn btn-tayo">one way</button>
                 </div>
                 <div class="mt-2">
-                    <span>departure</span>
-                    <select class="custom-select" name="" id="">
-                        <option  value="">Monday, 20 July 2020</option>
-                    </select>
+                    <span>Departure Day</span>
+                    <input class="custom-select" type="date" placeholder="Monday, 20 July '20">
                 </div>
                 <div class="mt-2">
                     <span>how many person</span>
@@ -54,26 +63,30 @@
                     </div>
                 </div>
                 <div class="mt-2">
-                    <span>which class do you want ?</span>
+                    <span>Which class do you want ?</span>
                     <div class="cek">
-                        <div>
-                            <input type="checkbox">
-                            <label for="">economy</label>
-                        </div>
-                        <div>
-                            <input type="checkbox">
-                            <label for="">economy</label>
-                        </div>
-                        <div>
-                            <input type="checkbox">
-                            <label for="">economy</label>
+                        <div v-for="(item,index) in class_airlines" :key="index" :value="item.name_class" >
+                            <input type="checkbox"  id="item.name_class" v-model="search.airlines_class" @change="check($event)">
+                            <label for="">{{item.name_class}}</label>
                         </div>
                     </div>
                 </div>
-              <div class="modal-footer">
-              <button type="button" class="btn btn-tayo" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                <div class="col-lg-12 my-5">
+                  <a href="/findtiket">
+                  <button class="btn-primary search-flight mt-3" @click="searchFlight()">
+                    <b-row class="mt-3">
+                      <b-col lg="7">
+                        <p style="font-size:18px;"> SEARCH FLIGHT
+                        </p>
+                        </b-col>
+                      <b-col lg="5">
+                        <img class="text-right"
+                   src="../assets/assets/img/panah.png" alt="">
+                      </b-col>
+                    </b-row>
+                    </button>
+                    </a>
+                </div>
             </div>
         </div>
       </div>
@@ -83,8 +96,47 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
-
+  data () {
+    return {
+      search: {
+        from: '',
+        to: '',
+        airline_class: ''
+      }
+    }
+  },
+  computed: {
+    ...mapGetters({
+      dataAirlines: 'landing/getDataAirlines',
+      dep_city: 'landing/getDepartureCity',
+      dest_city: 'landing/getDestinationCity',
+      class_airlines: 'landing/getClass'
+    })
+  },
+  methods: {
+    ...mapActions({
+      getAirlines: 'landing/getData',
+      getDeptCity: 'landing/getDepCity',
+      getDestCity: 'landing/getDestCity',
+      getClass: 'landing/getClass',
+      getFlight: 'landing/searchFlight'
+    }),
+    searchFlight () {
+      const flight = {
+        from: this.search.from,
+        to: this.search.to
+      }
+      this.getFlight(flight)
+    }
+  },
+  mounted () {
+    this.getAirlines()
+    this.getDeptCity()
+    this.getDestCity()
+    this.getClass()
+  }
 }
 </script>
 
@@ -137,6 +189,9 @@ border-radius: 12px;
 .custom-select {
   position: relative;
   font-family: Arial;
+  border: 1px solid #DDDDDD;
+box-sizing: border-box;
+border-radius: 6px;
 }
 
 .custom-select select {
@@ -146,7 +201,12 @@ border-radius: 12px;
 .select-selected {
   background-color: DodgerBlue;
 }
-
+.search-flight{
+  background: #2395FF;
+box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+border-radius: 10px;
+width: 100%;
+}
 /* Style the arrow inside the select element: */
 .select-selected:after {
   position: absolute;
