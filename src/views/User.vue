@@ -9,7 +9,6 @@
                </div>
                <div class="text-center mt-3" >
                     <label class="fileContainer">
-                      {{getDetailUsers}}
                         <span>image upload  / change image</span>
                         <input  @change="uploadfile" type="file"/>
                     </label>
@@ -65,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Cards</label>
-                        <input type="number"  v-model="detailUser.detail.cards" class="form-control" id="exampleFormControlInput1" placeholder="Cards">
+                        <input type="text"  v-model="detailUser.detail.cards" class="form-control" id="exampleFormControlInput1" placeholder="Cards">
                     </div>
                     <div class="acount-set">
                         <h5 class="text-primary">acount seting  <b-icon icon="caret-right"  aria-hidden="true"></b-icon></h5>
@@ -98,17 +97,19 @@
            </div>
        </div>
     </div>
-
+<Modal/>
     </div>
 </template>
 
 <script>
 import { mapGetters, mapActions, mapState } from 'vuex'
 import Navbar from '../components/Navbar'
+import Modal from '../components/Modal'
 import Swal from 'sweetalert2'
 export default {
   components: {
-    Navbar
+    Navbar,
+    Modal
   },
   data () {
     return {

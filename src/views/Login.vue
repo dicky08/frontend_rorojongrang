@@ -86,7 +86,7 @@ export default {
     login () {
       this.onlogin(this.form).then(res => {
         setTimeout(() => {
-          window.location = '/'
+          window.location = '/user'
         }, 2000)
         Swal.fire(
           'Good job!',
