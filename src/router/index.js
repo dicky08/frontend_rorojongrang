@@ -11,6 +11,7 @@ import flightDetail from '../views/Flight_Detail.vue'
 import landing from '../views/landing.vue'
 import User from '../views/User.vue'
 import DetailBooking from '../views/DetailBooking.vue'
+import EditBooking from '../views/EditBooking.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/DetailBooking',
     name: 'Detail',
     component: DetailBooking
+  },
+  {
+    path: '/EditBooking',
+    name: 'Edit',
+    component: EditBooking
   },
   {
     path: '/findtiket',

@@ -1,6 +1,6 @@
 <template>
     <div class="wrap-content">
-        <Navbar :img="getDetailUsers.users.data[0].image" />
+        <Navbar :img="getDetailUsers.users.data" />
     <div class="container-fluid content pl-5 pr-5">
        <div class="" style=" display: flex; justify-content: space-around; height: 100vh">
            <div  class="col-md-3 bg-white">
@@ -8,11 +8,9 @@
                  <img class="avatar" :src="`http://localhost:3000/img/${detailUser.detail.image}`" alt="" srcset="">
                </div>
                <div class="text-center mt-3" >
-                    <label class="fileContainer">
-                      {{getDetailUsers}}
-                        <span>image upload  / change image</span>
-                        <input  @change="uploadfile" type="file"/>
-                    </label>
+                    <b-button md variant="outline-primary" class="fileContainer">Select Photo
+                      <input  @change="uploadfile" type="file"/>
+                    </b-button>
                </div>
                <div class="text-center mt-3">
                    <h5 class="font-weight-bold">{{ detailUser.detail.name }}</h5>
@@ -22,39 +20,39 @@
                    <span class="font-weight-bold">cards</span>
                    <span class="text-primary">+ add</span>
                </div>
-               <div class="mt-3 card-wraper">
+               <div class="mt-3 card-wraper p-2">
                    <span>{{detailUser.detail.cards}}</span>
                    <div class="card-saldo">
                        <p>x-card</p>
                        <p>$ 1,440.2</p>
                    </div>
                </div>
-               <div  class="user-seting mt-3">
-                   <div class="">
-                       <span class="fa fa-user text-primary"></span>
-                       <span  class="ml-3 text-primary font-weight-bold">profile</span>
+               <div  class="mt-4 ml-4" style="cursor:pointer">
+                     <div class="mt-2 mb-4 d-flex font-weight-bold">
+                      <h5 ><b-icon-person ></b-icon-person></h5>
+                      <h6 class="font-weight-bold ml-4">Profile</h6>
                    </div>
-                   <div class="mt-2">
-                      <span class="fa fa-star"></span>
-                       <span  class="ml-3 font-weight-bold">my riview</span>
+                     <div class="mt-2 mb-4 d-flex font-weight-bold">
+                      <h5 ><b-icon-star ></b-icon-star></h5>
+                      <h6 class="font-weight-bold ml-4">My Review</h6>
                    </div>
-                   <div class="mt-2">
-                       <span     class="fa fa-cogs"></span>
-                       <span  class="ml-3 font-weight-bold">settings</span>
+                   <div class="mt-2 mb-4 d-flex font-weight-bold">
+                      <h5 ><b-icon-gear ></b-icon-gear></h5>
+                      <h6 class="font-weight-bold ml-4">Setting</h6>
                    </div>
-                   <div class="mt-2">
-                      <span class="fa fa-sign-out text-danger"></span>
-                       <span  class="ml-3 text-danger font-weight-bold">user</span>
+                   <div class="mt-2 mb-4 d-flex font-weight-bold">
+                      <h5 ><b-icon-power ></b-icon-power></h5>
+                      <h6 class="font-weight-bold ml-4" @click="Logout">Power</h6>
                    </div>
                </div>
            </div>
            <div class="col-md-9 info-user  bg-white ml-5 ">
-               <h5 class="text-primary">profile</h5>
-               <h3 class="font-weight-bold">profile</h3>
+               <h5 class="text-primary mt-2">PROFILE</h5>
+               <h3 class="font-weight-bold">ProfileE</h3>
             <form @submit.prevent="update">
                <div class="row">
                    <div class="col-md-6 mt-3">
-                      <h5 class="font-weight-bold">contact</h5>
+                      <h5 class="font-weight-bold">Contact</h5>
                       <div class="form-group">
                         <label for="exampleFormControlInput1">email</label>
                         <input type="text" name="email" readonly :value="detailUser.detail.email" class="form-control" id="exampleFormControlInput1" placeholder="email">
@@ -72,7 +70,7 @@
                     </div>
                    </div>
                    <div class="col-md-6">
-                       <h5 class="font-weight-bold">biodata</h5>
+                       <h5 class="font-weight-bold">Biodata</h5>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">username</label>
                         <input type="text" v-model="detailUser.detail.name" class="form-control" id="exampleFormControlInput1" placeholder="username">
@@ -164,8 +162,15 @@ export default {
           'success'
         )
       }).catch(err => {
-        alert(err)
+        console.log(err.message)
       })
+    },
+    Logout () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('id')
+      localStorage.removeItem('id_transaction')
+      localStorage.removeItem('SearchAirlines')
+      window.location = '/'
     }
   },
   mounted () {
@@ -275,7 +280,7 @@ input[type=text] {
 /* Example stylistic flourishes */
 
 .fileContainer {
-    background: blue;
+    background: rgb(241, 241, 245);
     border-radius: .5em;
     padding: .5em;
 }

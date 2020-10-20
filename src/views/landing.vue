@@ -27,7 +27,7 @@
 </nav>
 </div>
 <div v-else >
-    <Navbar :img="getDetailUsers.users.data[0].image" />
+    <Navbar :img="getDetailUsers.users.data" />
 </div>
 <!-- end navbar -->
 <!-- main -->
@@ -35,7 +35,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="container">
-        <h1>find your<span class="text-primary">flight</span></h1>
+        <h1>find your<span class="text-primary"> flight</span></h1>
         <span>and explore the world with us</span>
       </div>
      <div  class="image-down mt-5">
@@ -125,7 +125,7 @@
     </div>
     </div>
   </div>
-  <Modal />
+  <Modal type="home"  />
 </div>
   <!-- <Footer /> -->
 <!-- end of main -->
@@ -142,11 +142,6 @@ export default {
     Modal,
     Navbar
     // Footer
-  },
-  data () {
-    return {
-      id_user: null
-    }
   },
   computed: {
     ...mapState({

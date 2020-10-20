@@ -52,7 +52,7 @@
           <p></p>
           <p>Did you forget your password ?</p>
           <p></p>
-          <router-link to="/"><p>Tap here for reset</p></router-link>
+          <router-link to="/forgotpassword"><p>Tap here for reset</p></router-link>
         </div>
         <div>
           <img class="divider ml-5" src="../assets/assets/img/divider.png" alt="">
@@ -62,6 +62,7 @@
           <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/google.png" alt=""></b-button>
           <b-button class="m-3" variant="outline-primary"><img src="../assets/assets/img/facebook.png" alt=""></b-button>
         </div>
+        <router-link to="/register"><p>Don't have an account yet? <br>Sign Up</p></router-link>
       </div>
     </div>
   </div>
@@ -86,7 +87,7 @@ export default {
     login () {
       this.onlogin(this.form).then(res => {
         setTimeout(() => {
-          window.location = '/'
+          window.location = '/user'
         }, 2000)
         Swal.fire(
           'Good job!',

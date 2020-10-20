@@ -277,12 +277,15 @@ export default {
     ...mapActions({
       actionsFlightDetail: 'findtiket/getFlightDetail',
       getId: 'users/getDetailUsers',
-      insertTransaction: 'transaction/insertTransaction'
+      insertBooking: 'booking/insertBooking'
     }),
     process () {
       const dataAirlines = this.getFlightDetail.findtiket.data[0]
       const id = this.id
       const idAirlines = dataAirlines.id_airlines
+      const codeAirlines = dataAirlines.code_airlines
+      const codeDeparture = dataAirlines.code_departure
+      const codeDestination = dataAirlines.code_destination
       this.amount = dataAirlines.price
       if (this.asurance === true) {
         this.amount += 2
@@ -292,17 +295,21 @@ export default {
       const data = {
         id_user: id,
         id_airlines: idAirlines,
+        code_airlines: codeAirlines,
+        code_departure: codeDeparture,
+        code_destination: codeDestination,
         total_payment: this.amount
       }
-      this.insertTransaction(data)
+      this.insertBooking(data)
         .then(res => {
+          alert(res)
           setTimeout(() => {
             window.location = '/mybooking'
           }, 2000)
           Swal.fire(
             'Good job!',
-          `${res}`,
-          'success'
+        `${res}`,
+        'success'
           )
         })
     }

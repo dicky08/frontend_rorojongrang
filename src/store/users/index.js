@@ -24,7 +24,6 @@ const mutations = {
     state.allData.users = payload
   },
   set_detail_user (state, payload) {
-    // console.log(state.detail)
     state.detail = payload
   }
 }
@@ -33,9 +32,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.get(`http://localhost:3000/api/users/getall/${id}`)
         .then((result) => {
-          console.log(result)
           context.commit('SET_DATA_USERS', result.data)
-          console.log(result.data)
         }).catch((err) => {
           console.log(err.message)
         })
@@ -53,7 +50,7 @@ const actions = {
       axios.put(`http://localhost:3000/api/users/update/${id}`, result).then(dt => {
         resolve(dt.data.message)
       }).catch(err => {
-        reject(err)
+        console.log(err.message)
       })
     })
   },
@@ -62,7 +59,6 @@ const actions = {
       axios.get(`http://localhost:3000/api/users/getDetail/${payload}`)
         .then((result) => {
           context.commit('SET_DETAIL_USERS', result.data)
-          console.log(result.data)
         }).catch((err) => {
           console.log(err.message)
         })
