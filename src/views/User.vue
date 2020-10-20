@@ -5,7 +5,7 @@
        <div class="" style=" display: flex; justify-content: space-around; height: 100vh">
            <div  class="col-md-3 bg-white">
                <div class="text-center mt-5">
-                 <img class="avatar" :src="`http://localhost:3000/img/${detailUser.detail.image}`" alt="" srcset="">
+                 <img class="avatar" :src="`${url}/img/${detailUser.detail.image}`" alt="" srcset="">
                </div>
                <div class="text-center mt-3" >
                     <b-button md variant="outline-primary" class="fileContainer">Select Photo
@@ -110,6 +110,7 @@ export default {
   },
   data () {
     return {
+      url: process.env.VUE_APP_API_URL,
       form: {
         email: '',
         phone: '',

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../../helper/env'
 const state = () => {
   return {
     allData: {
@@ -61,7 +62,7 @@ const actions = {
   // },
   getDeparture (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get('http://localhost:3000/api/departure_city/getAll')
+      axios.get(`${url}/api/departure_city/getAll`)
         .then((result) => {
           context.commit('SET_DEPARTURE', result.data.data)
         }).catch((err) => {
@@ -71,7 +72,7 @@ const actions = {
   },
   getDestination (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get('http://localhost:3000/api/destination_city/getAll')
+      axios.get(`${url}/api/destination_city/getAll`)
         .then((result) => {
           context.commit('SET_DESTINATION', result.data.data)
         }).catch((err) => {
@@ -81,7 +82,7 @@ const actions = {
   },
   getDetailTicket (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/api/airlines/detail/${payload}`)
+      axios.get(`${url}/api/airlines/detail/${payload}`)
         .then((result) => {
           context.commit('SET_DATA_DETAIL', result.data)
         }).catch((err) => {
@@ -91,7 +92,7 @@ const actions = {
   },
   getFlightDetail (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/api/airlines/detail/${payload}`)
+      axios.get(`${url}/api/airlines/detail/${payload}`)
         .then((result) => {
           context.commit('SET_DATA_DETAIL', result.data)
         }).catch((err) => {
@@ -101,7 +102,7 @@ const actions = {
   },
   Search (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/api/airlines/getall?from=${payload.from}&to=${payload.to}&trip=${payload.trip}&departure_day=${payload.day}&child=${payload.child}&adult=${payload.adult}&class_airlines=${payload.class_airlines}&transit=${payload.transit}&facilities=${payload.facilities}&departureFrom=${payload.deparFrom}&departureTo=${payload.deparTo}&arrivedFrom=${payload.arrFrom}&arrivedTo=${payload.arrTo}`)
+      axios.get(`${url}/api/airlines/getall?from=${payload.from}&to=${payload.to}&trip=${payload.trip}&departure_day=${payload.day}&child=${payload.child}&adult=${payload.adult}&class_airlines=${payload.class_airlines}&transit=${payload.transit}&facilities=${payload.facilities}&departureFrom=${payload.deparFrom}&departureTo=${payload.deparTo}&arrivedFrom=${payload.arrFrom}&arrivedTo=${payload.arrTo}`)
         .then((result) => {
           context.commit('SET_DATA_DETAIL', result.data)
         }).catch((err) => {
@@ -111,7 +112,7 @@ const actions = {
   },
   SearchTiket (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/api/airlines/getall?from=${payload.from}&to=${payload.to}&trip=${payload.trip}&departure_day=${payload.day}&child=${payload.child}&adult=${payload.adult}&class_airlines=${payload.class_airlines}`)
+      axios.get(`${url}/api/airlines/getall?from=${payload.from}&to=${payload.to}&trip=${payload.trip}&departure_day=${payload.day}&child=${payload.child}&adult=${payload.adult}&class_airlines=${payload.class_airlines}`)
         .then((result) => {
           context.commit('SET_SEARCH_TIKET', result.data)
           resolve(result.data.data)

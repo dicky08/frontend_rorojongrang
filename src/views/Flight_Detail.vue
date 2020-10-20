@@ -51,7 +51,7 @@
                 <div class="card2" v-for="(getFlight,index) in getFlightDetail.findtiket.data" :key="index">
                   <div class="row">
                     <div class="col-md-6 logo-airlines">
-                      <img  :src="`http://localhost:3000/img/${getFlight.image_airlines}`" width="120px">
+                      <img  :src="`${url}/img/${getFlight.image_airlines}`" width="120px">
                     </div>
                     <div class="col-md-6 mt-3">{{getFlight.name_airlines}}</div>
                   </div>
@@ -258,6 +258,7 @@ export default {
   },
   data () {
     return {
+      url: process.env.VUE_APP_API_URL,
       id_airlines: null,
       address: null,
       amount: null,

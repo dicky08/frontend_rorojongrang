@@ -284,6 +284,9 @@ export default {
         box-shadow: 0px 8px 25px rgba(35, 149, 255, 0.49);
         border-radius: 10px;
     }
+    .right-mybooking {
+      font-family: sans-serif;
+    }
     @media (max-width: 900px){
         .left-mybooking {
             display: none;

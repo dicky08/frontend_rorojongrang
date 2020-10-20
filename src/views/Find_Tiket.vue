@@ -154,7 +154,7 @@
               <div class="box-ticket mb-3" v-for="(datafindtiket, index) in allfindtiket.findtiket.data" :key="index">
                     <div class="row airlines">
                       <div class="col-lg-2">
-                        <img :src="`http://localhost:3000/img/${datafindtiket.image_airlines}`" alt="">
+                        <img :src="`${url}/img/${datafindtiket.image_airlines}`" alt="">
                       </div>
                       <div class="col-lg-8">{{datafindtiket.name_airlines}}</div>
                     </div>
@@ -203,7 +203,7 @@
               <div class="card2" v-for="(datafindtiket, index) in allfindtiket.findtiket.data" :key="index">
                   <div class="row card-airlines">
                         <div class="col-4">
-                           <img :src="`http://localhost:3000/img/${datafindtiket.image_airlines}`" alt="">
+                           <img :src="`${url}/img/${datafindtiket.image_airlines}`" alt="">
                         </div>
                       <div class="col-8">
                         <div class="row country-mobile">
@@ -239,6 +239,7 @@ export default {
   },
   data () {
     return {
+      url: process.env.VUE_APP_API_URL,
       search_flight: JSON.parse(localStorage.getItem('SearchAirlines')),
       transit: '',
       facilities: '',

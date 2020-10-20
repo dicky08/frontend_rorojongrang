@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../../helper/env'
 const id = localStorage.getItem('id')
 const state = () => {
   return {
@@ -30,7 +31,7 @@ const mutations = {
 const actions = {
   getAllUsers (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/api/users/getall/${id}`)
+      axios.get(`${url}/api/users/getall/${id}`)
         .then((result) => {
           context.commit('SET_DATA_USERS', result.data)
         }).catch((err) => {
@@ -40,14 +41,14 @@ const actions = {
   },
   getDetail ({ commit }, result) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/api/users/getDetail/${id}`).then(dt => {
+      axios.get(`${url}/api/users/getDetail/${id}`).then(dt => {
         commit('set_detail_user', dt.data.data[0])
       })
     })
   },
   updateuser ({ commit }, result) {
     return new Promise((resolve, reject) => {
-      axios.put(`http://localhost:3000/api/users/update/${id}`, result).then(dt => {
+      axios.put(`${url}/api/users/update/${id}`, result).then(dt => {
         resolve(dt.data.message)
       }).catch(err => {
         console.log(err.message)
@@ -56,7 +57,7 @@ const actions = {
   },
   getDetailUsers (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`http://localhost:3000/api/users/getDetail/${payload}`)
+      axios.get(`${url}/api/users/getDetail/${payload}`)
         .then((result) => {
           context.commit('SET_DETAIL_USERS', result.data)
         }).catch((err) => {

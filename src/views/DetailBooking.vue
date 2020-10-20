@@ -10,7 +10,7 @@
               <div class="col-lg-8">
                 <div class="card-text border p-3">
                   <div class="row mb-3">
-                    <div class="col-lg-4"><img  :src="`http://localhost:3000/img/${getDetailBooking[0].image_airlines}`" width="120px"></div>
+                    <div class="col-lg-4"><img  :src="`${url}/img/${getDetailBooking[0].image_airlines}`" width="120px"></div>
                     <div class="col-lg-3"><h4 class=" font-weight-bold">{{getDetailBooking[0].code_departure}}</h4></div>
                     <div class="col-lg-2"><img src="../../src/assets/assets/img/Vector.png"></div>
                     <div class="col-lg-3"><h4 class="font-weight-bold">{{getDetailBooking[0].code_destination}}</h4></div>
@@ -54,7 +54,7 @@
               <div class="col-lg-8 col-12">
                 <div class="card-text p-3">
                   <div class="row mb-3">
-                    <div class="col-lg-4 col-4"><img  :src="`http://localhost:3000/img/${getDetailBooking[0].image_airlines}`" width="120px"></div>
+                    <div class="col-lg-4 col-4"><img  :src="`${url}/img/${getDetailBooking[0].image_airlines}`" width="120px"></div>
                     <div class="col-lg-3 col-3"><h4 class=" font-weight-bold">{{getDetailBooking[0].code_departure}}</h4></div>
                     <div class="col-lg-2 col-2"><img src="../../src/assets/assets/img/Vector.png"></div>
                     <div class="col-lg-3 col-3"><h4 class="font-weight-bold">{{getDetailBooking[0].code_destination}}</h4></div>
@@ -101,6 +101,11 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  data () {
+    return {
+      url: process.env.VUE_APP_API_URL
+    }
   },
   computed: {
     ...mapGetters({

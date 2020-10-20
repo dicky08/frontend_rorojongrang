@@ -46,7 +46,7 @@
             <div>
               <b-dropdown size=sm  variant="link" toggle-class="text-decoration-none" no-caret>
                 <template v-slot:button-content>
-                   <img class="image-me rounded-circle profile" :src="`http://localhost:3000/img/${img[0].image}`" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;width:36px;height:36px ">
+                   <img class="image-me rounded-circle profile" :src="`${url}/img/${img[0].image}`" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;width:36px;height:36px ">
                 </template>
                 <b-dropdown-item href="/user"><b-icon-person></b-icon-person> Profile</b-dropdown-item>
                 <b-dropdown-item @click="logout"> <b-icon-power></b-icon-power> Logout</b-dropdown-item>
@@ -67,6 +67,11 @@ export default {
   props: ['img'],
   components: {
     Modal
+  },
+  data () {
+    return {
+      url: process.env.VUE_APP_API_URL
+    }
   },
   computed: {
     ...mapState({

@@ -70,7 +70,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import Swal from 'sweetalert2'
 export default {
   data () {
     return {
@@ -86,14 +85,7 @@ export default {
     }),
     login () {
       this.onlogin(this.form).then(res => {
-        setTimeout(() => {
-          window.location = '/user'
-        }, 2000)
-        Swal.fire(
-          'Good job!',
-          `${res}`,
-          'success'
-        )
+        window.location = '/user'
       }).catch(err => {
         alert(err)
       })

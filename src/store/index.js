@@ -6,7 +6,7 @@ import axios from 'axios'
 import auth from './auth/index'
 import booking from './booking/index'
 import swal from 'sweetalert2'
-
+import { url } from '../helper/env'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -28,7 +28,7 @@ export default new Vuex.Store({
     login ({ commit }, result) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://localhost:3000/api/users/login', result)
+          .post(`${url}/api/users/login`, result)
           .then(dt => {
             console.log(result)
             if (dt.data.status === 'not activated') {
