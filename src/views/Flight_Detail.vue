@@ -1,6 +1,6 @@
 <template>
   <div style="overflow-y:hidden">
-    <Navbar :img="getDetailUsers.users.data[0].image"/>
+    <Navbar :img="getDetailUsers.users.data"/>
     <div class="row">
       <div class="box">
         <div class="col-lg-12 ml-5 items">
@@ -17,7 +17,7 @@
             </div>
             <div class="col-lg-2">
               <h5 style="font-size: 14px; margin-top: -15px; color: white">
-                View Details
+                View Detailss
               </h5>
             </div>
           </div>
@@ -62,7 +62,7 @@
                   </div>
                   <div class="row mt-2">
                     <div class="col-md-12">
-                      <p>Sunday, 15 August 2020 | 12:33 - 15:21</p>
+                      <p>Sunday, 15 August 2020 | 12:33 - 15:2</p>
                     </div>
                   </div>
                   <div class="row mt-2 checked">
@@ -163,7 +163,7 @@
            </div>
           </div>
       </div>
-      <div class="ticket-card">
+      <div class="ticket-card" v-for="(getFlight,index) in getFlightDetail.findtiket.data" :key="index">
        <div class="row">
          <div class="col-12">
             <img src="../assets/assets/img/ticketBackground.png" height="550px" >
@@ -171,14 +171,14 @@
        </div>
        <div class="row text-tiket">
          <img src="../assets/assets/img/Vector (3).png" >
-         <div class="from ml-5">IDN</div>
-         <div class="to mr-5">JPN</div>
+         <div class="from ml-5">{{getFlight.code_departure}}</div>
+         <div class="to mr-5">{{getFlight.code_destination}}</div>
          <div class="time1">12:33</div>
          <div class="time2">18:33</div>
        </div>
        <div class="row logo-airliness">
          <div class="col-6">
-           <img src="../assets/assets/img/garuda.png" alt="">
+           <img :src="`${url}/img/${getFlight.image_airlines}`" alt="">
          </div>
          <div class="col-6">
            <b-icon icon="star-fill" variant="warning" class="ml-1"></b-icon>
@@ -196,18 +196,18 @@
            <div class="col-3">Gate</div>
          </div>
            <div class="row code " style="width:400px; font-weight:bold;border-bottom:0.1px solid grey">
-            <div class="col-3">AB-221</div>
-            <div class="col-3">Economy</div>
-            <div class="col-3 text-center">A</div>
-            <div class="col-3">221</div>
+            <div class="col-3">{{getFlight.code_airlines}}</div>
+            <div class="col-3">{{getFlight.name_class}}</div>
+            <div class="col-3 text-center">{{terminal}}</div>
+            <div class="col-3">{{gate}}</div>
          </div>
          <br>
          <br>
        </div>
          <div class="row passengers">
-           <span class="badge ml-3" style="line-height:24px;border-radius:100%; width:30px;height:30px"><span style="color:#2395FF">0</span></span>
+           <span class="badge ml-3" style="line-height:24px;border-radius:100%; width:30px;height:30px"><span style="color:#2395FF">{{getFlight.child}}</span></span>
            <div class="col-6 circle">Child</div>
-           <span class="badge ml-3" style="line-height:24px;border-radius:100%; width:30px;height:30px"><span style="color:#2395FF">0</span></span>
+           <span class="badge ml-3" style="line-height:24px;border-radius:100%; width:30px;height:30px"><span style="color:#2395FF">{{getFlight.adult}}</span></span>
            <div class="col circle">Adults</div>
          </div>
          <div class="row">
@@ -262,7 +262,9 @@ export default {
       id_airlines: null,
       address: null,
       amount: null,
-      asurance: null
+      asurance: null,
+      gate: null,
+      terminal: null
     }
   },
   computed: {
@@ -322,6 +324,10 @@ export default {
     const addres = dataUsers.address
     const pecah = addres.split(',')
     this.address = pecah[1]
+    const gate = this.getFlightDetail.findtiket.data[0].code_airlines
+    const splits = gate.split('-')
+    this.gate = splits[1]
+    this.terminal = splits[0]
   }
 }
 </script>
