@@ -23,7 +23,7 @@
               v-slot="{ errors }"
             >
             <input v-model="form.email" type="text" id="suffixInside" class="form-control">
-            <label for="suffixInside">Username </label>
+            <label for="suffixInside">Email </label>
             <div class="text-danger">
               {{errors[0]}}
             </div>
