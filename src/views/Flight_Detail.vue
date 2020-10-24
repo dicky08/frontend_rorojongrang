@@ -214,31 +214,35 @@
            <div class="col-12 ml-4 font-weight-bold">Facilities</div>
          </div>
            <div class="row ml-4 mt-5">
-             <div class="col-6">
-               <div class="snack">
-                 <img src="../assets/assets/img/Vector (5).png" >
-                 <span style="color:white;font-family:poppinsBold; line-height:50px" class="ml-5">Snack</span>
-               </div>
-             </div>
-             <div class="col-6 ">
+              <div class="col-6" v-if="getFlight.name_facilities === 'Luggage'">
+                <div class="snack">
+                  <img src="../assets/assets/img/Vector (5).png" >
+                  <span style="color:white;font-family:poppinsBold; line-height:50px" class="ml-5">{{getFlight.name_facilities }}</span>
+                </div>
+              </div>
+           </div>
+           <div class="row ml-4 mt-5">
+             <div class="col-6 " v-if="getFlight.name_facilities === 'Wi-fi'">
                <div class="wifi">
                  <img src="../assets/assets/img/Vector (6).png" >
-                  <span style="color:white;font-family:poppinsBold; line-height:50px" class="ml-5">Wifi</span>
+                  <span style="color:white;font-family:poppinsBold; line-height:50px" class="ml-5">{{getFlight.name_facilities }}</span>
                </div>
              </div>
-             <div class="col-7 mt-3">
+           </div>
+           <div class="row ml-4 mt-5">
+             <div class="col-7 mt-3" v-if="getFlight.name_facilities === 'In-Flight Meal'">
                <div class="pass">
                  <img src="../assets/assets/img/Vector (7).png" >
-                  <span style="color:white;font-family:poppinsBold; line-height:50px" class="ml-5">Passanger</span>
+                  <span style="color:white;font-family:poppinsBold; line-height:50px" class="ml-5">{{getFlight.name_facilities }}</span>
                </div>
              </div>
            </div>
              <div class="row amount ml-5">
                <div class="col-8">Total you'll pay</div>
-               <div class="col-4" style="font-family:poppinsBold;font-weight:600; color:#2395FF">$ 145,00</div>
+               <div class="col-4" style="font-family:poppinsBold;font-weight:600; color:#2395FF">{{getFlight.price}}</div>
              </div>
               <div class="row booking">
-               <span>Booking</span>
+               <span @click="process">Booking</span>
              </div>
       </div>
     </div>

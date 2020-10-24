@@ -152,7 +152,7 @@
         </div>
         <div class="col-lg mt-4" v-if="allfindtiket.findtiket.data.length > 0">
               <div class="box-ticket mb-3" v-for="(datafindtiket, index) in allfindtiket.findtiket.data" :key="index">
-                    <div class="row airlines">
+                    <div class="row airlines" >
                       <div class="col-lg-2">
                         <img :src="`${url}/img/${datafindtiket.image_airlines}`" alt="">
                       </div>
@@ -165,15 +165,15 @@
                         <div class="col-lg JPN">{{datafindtiket.code_destination}}</div>
                         <p style="font-size:10px" class="text-muted time2">12:33</p>
                         <div class="col-lg-2 text-time" style="width:40px">3 hours 11 minutes <br> <span style="padding-left:20px">1 {{datafindtiket.name_transit}}</span></div>
-                        <div class="col-lg text-center d-d-inline">
+                        <div class="col-lg text-center">
                           <span v-if="datafindtiket.name_facilities==='Luggage'">
-                          <img src="../assets/assets/img/bag.png" alt="bag" class="mr-2" width="15px">
+                          <img src="../assets/assets/img/bag.png" alt="bag" width="15px">
                           </span>
-                            <span :else-if="datafindtiket.name_facilities==='Wi-fi'">
-                          <img src="../assets/assets/img/wifi.png" alt="meal" class="mr-2" width="15px">
+                          <span v-if="datafindtiket.name_facilities==='Wi-fi'">
+                          <img src="../assets/assets/img/wifi.png" alt="wi-fi" width="15px">
                           </span>
-                            <span :else-if="datafindtiket.name_facilities==='In-Flight Meal'">
-                          <img src="../assets/assets/img/meal.png" alt="meal" class="mr-2" width="15px">
+                          <span v-if="datafindtiket.name_facilities==='In-Flight Meal'">
+                          <img src="../assets/assets/img/meal.png" alt="meal" width="15px">
                           </span>
                         </div>
                         <div class="col-lg price text-center">$ {{datafindtiket.price}}<span>/pax</span></div>
@@ -201,7 +201,7 @@
                 </div>
               </div>
               <div class="card2" v-for="(datafindtiket, index) in allfindtiket.findtiket.data" :key="index">
-                  <div class="row card-airlines">
+                  <router-link class="row card-airlines" style="cursor:pointer"  :to="`/flightdetail/${datafindtiket.id_airlines}`">
                         <div class="col-4">
                            <img :src="`${url}/img/${datafindtiket.image_airlines}`" alt="">
                         </div>
@@ -220,7 +220,7 @@
                           <div class="col-5">$ {{datafindtiket.price}}</div>
                         </div>
                       </div>
-               </div>
+               </router-link>
               </div>
              </div>
     <Footer/>

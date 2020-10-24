@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container mt-3">
-      <Modal type="home"/>
+      <Modal type="home" />
+      <Modal type="departure_time" />
       <a class="navbar-brand" href="/"><img src="../assets/assets/img/logoangkas.png" class="logo"> Ankasa</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,6 +29,9 @@
           <li class="nav-item ml-4">
             <router-link to="/mybooking" class="nav-link" > My Booking</router-link>
           </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link" href="#"  data-toggle="modal" data-target="#see-departure"> <b-icon-calendar-date-fill></b-icon-calendar-date-fill></a>
+          </li>
         </ul>
         <ul class="navbar-nav phone desktop">
            <li class="nav-item mr-5 enpelove">
@@ -43,10 +47,19 @@
             </a>
           </li>
           <li>
-            <div>
+            <div v-if="img[0].image !== 'default.jpg'">
               <b-dropdown size=sm  variant="link" toggle-class="text-decoration-none" no-caret>
                 <template v-slot:button-content>
                    <img class="image-me rounded-circle profile" :src="`${url}/img/${img[0].image}`" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;width:36px;height:36px ">
+                </template>
+                <b-dropdown-item href="/user"><b-icon-person></b-icon-person> Profile</b-dropdown-item>
+                <b-dropdown-item @click="logout"> <b-icon-power></b-icon-power> Logout</b-dropdown-item>
+              </b-dropdown>
+            </div>
+            <div v-else>
+              <b-dropdown size=sm  variant="link" toggle-class="text-decoration-none" no-caret>
+                <template v-slot:button-content>
+                   <img class="image-me rounded-circle profile" src="https://digicourse.id/assets.digicourse.id/user/profile_picture/default_user.jpg" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;width:36px;height:36px ">
                 </template>
                 <b-dropdown-item href="/user"><b-icon-person></b-icon-person> Profile</b-dropdown-item>
                 <b-dropdown-item @click="logout"> <b-icon-power></b-icon-power> Logout</b-dropdown-item>

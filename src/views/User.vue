@@ -59,11 +59,11 @@
                     </div>
                       <div class="form-group">
                         <label for="exampleFormControlInput1">phone number</label>
-                        <input type="text"  v-model="detailUser.detail.phone_number" class="form-control" id="exampleFormControlInput1" placeholder="phone number">
+                        <input type="text"  v-model="detailUser.detail.phone_number"  required class="form-control" id="exampleFormControlInput1" placeholder="phone number">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Cards</label>
-                        <input type="number"  v-model="detailUser.detail.cards" class="form-control" id="exampleFormControlInput1" placeholder="Cards">
+                        <input type="number"  v-model="detailUser.detail.cards" class="form-control" required id="exampleFormControlInput1" placeholder="Cards">
                     </div>
                     <div class="acount-set">
                         <h5 class="text-primary">acount seting  <b-icon icon="caret-right"  aria-hidden="true"></b-icon></h5>
@@ -73,19 +73,19 @@
                        <h5 class="font-weight-bold">Biodata</h5>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">username</label>
-                        <input type="text" v-model="detailUser.detail.name" class="form-control" id="exampleFormControlInput1" placeholder="username">
+                        <input type="text" v-model="detailUser.detail.name" class="form-control"  required id="exampleFormControlInput1" placeholder="username">
                     </div>
                         <div class="form-group">
                         <label for="exampleFormControlInput1">city</label>
-                        <input type="text"  v-model="detailUser.detail.city" class="form-control" id="exampleFormControlInput1" placeholder="email">
+                        <input type="text"  v-model="detailUser.detail.city" class="form-control"  required id="exampleFormControlInput1" placeholder="email">
                     </div>
                         <div class="form-group">
                         <label for="exampleFormControlInput1">address</label>
-                        <input type="text" class="form-control"  v-model="detailUser.detail.address" id="exampleFormControlInput1" placeholder="city">
+                        <input type="text" class="form-control"  v-model="detailUser.detail.address" required id="exampleFormControlInput1" placeholder="city">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Post Code</label>
-                        <input type="text"  v-model="detailUser.detail.post_code" class="form-control" value="55211" id="exampleFormControlInput1" placeholder="post code">
+                        <input type="text"  v-model="detailUser.detail.post_code" required class="form-control" value="55211" id="exampleFormControlInput1" placeholder="post code">
                     </div>
                     <div class="btn-save">
                         <button type="submit" class="btn btn-primary btn-md">Save</button>

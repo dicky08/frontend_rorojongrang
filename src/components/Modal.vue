@@ -27,33 +27,31 @@
               </div>
               <div class="col-lg-12 shadow rounded p-2 mb-4">
                 <div class="row">
-                  <div class="col-lg-9 ml-2">from</div>
-                  <div class="col-lg-2 text-right">to</div>
+                  <div class="col-lg-9 ml-2 from">from</div>
+                  <div class="col-lg-2 text-right to">to</div>
                   <div class="col-lg-5 ">
-                    <select class="form-control" v-model="dataSearch.from">
+                    <select class="form-control" v-model="dataSearch.from" @change="fromSearchDeparture">
                       <option disabled value>Departure</option>
                       <option :value="departure.name_departure_city" v-for="(departure,index) in getDeparture" :key="index">{{departure.name_departure_city}}</option>
                     </select>
                   </div>
-                  <!-- <div class="col-lg-5 ml-2"><h5 class="font-weight-bold">MEDAN</h5></div> -->
                   <div class="col-lg-2 text-center"><b-icon-arrow-left-right></b-icon-arrow-left-right></div>
                   <div class="col-lg-5 text-right">
-                    <select class="form-control" v-model="dataSearch.to">
+                    <select class="form-control" v-model="dataSearch.to" @change="fromSearchDestination">
                       <option disabled value>Destination </option>
                       <option :value="destination.city_arrived" v-for="(destination,index) in getDestination" :key="index">{{destination.city_arrived}}</option>
                     </select>
                   </div>
-                  <!-- <div class="col-lg-3 text-right"><h5 class="font-weight-bold">TOKYO</h5></div> -->
-                  <div class="col-lg-8 ml-2"><p class="small">Indonesia</p></div>
-                  <div class="col-lg-3"><p class="small ml-4 text-right">Japan</p></div>
+                  <div class="col-lg-8 col-8 ml-2 from" ><p class="small" >{{departureCountryName}}</p></div>
+                  <div class="col-lg-3 to" ><p class="small ml-4 text-right" >{{destinationCountryName}}</p></div>
                 </div>
               </div>
               <div class="col-lg-12 mb-4 ">
                 <div class="row d-flex justify-content-between">
                   <div class="col-lg-5 p-0">
-                    <button class="btn btn-primary btn-block d-flex" @click.prevent="trip('one_way')">
+                    <button class="btn btn-primary btn-block d-flex justify-content-center mb-2" @click.prevent="trip('one_way')">
                     <span><img src="../assets/assets/img/Vector (3).png" ></span>
-                    <span class="text-capitalize ml-2"> One Way</span>
+                    <span class="text-capitalize ml-2 text-center"> One Way</span>
                     </button>
                   </div>
                   <!-- <div class="col-lg-2"></div> -->
@@ -89,7 +87,7 @@
                 <div class="row">
                   <div class="col-lg-12"><p>How many person?</p></div>
                   <div class="col-lg-6">
-                    <select class="form-control" v-model="dataSearch.child">
+                    <select class="form-control mb-2" v-model="dataSearch.child" >
                       <option disabled value>Select Child</option>
                       <option value="2">2</option>
                       <option value="4">4</option>
@@ -97,7 +95,7 @@
                     </select>
                   </div>
                   <div class="col-lg-6">
-                    <select class="form-control" v-model="dataSearch.adult">
+                    <select class="form-control" v-model="dataSearch.adult" >
                       <option disabled value>Select Adult</option>
                       <option value="2">2</option>
                       <option value="4">4</option>
@@ -179,6 +177,52 @@
   </div>
 </div>
 </div>
+<div v-else-if="type='departure_time'">
+<!-- Modal -->
+<div class="modal fade" id="see-departure" tabindex="-1" aria-labelledby="see-departureLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="see-departureLabel">Data Airlines</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <table class="table table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Airlines</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Trip</th>
+            <th scope="col">Day</th>
+            <th scope="col">Child</th>
+            <th scope="col">Adult</th>
+            <th scope="col">Class</th>
+          </tr>
+        </thead>
+        <tbody v-for="(dataAirlines, index) in getAirlines.data" :key="index">
+          <tr>
+            <th scope="row">{{index+1}}</th>
+            <td>{{dataAirlines.name_airlines}}</td>
+            <td>{{dataAirlines.name_departure_city}}</td>
+            <td>{{dataAirlines.city_arrived}}</td>
+            <td>{{dataAirlines.type}}</td>
+            <td>{{dataAirlines.departure_day}}</td>
+            <td>{{dataAirlines.child}}</td>
+            <td>{{dataAirlines.adult}}</td>
+            <td>{{dataAirlines.name_class}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -191,12 +235,14 @@ export default {
       dataSearch: {
         from: '',
         to: '',
-        trip: 'one_way',
+        trip: '',
         day: '',
         child: '',
         adult: '',
         class_airlines: ''
-      }
+      },
+      departureCountryName: '',
+      destinationCountryName: ''
     }
   },
   computed: {
@@ -210,7 +256,8 @@ export default {
     ...mapActions({
       actionSearchTiket: 'findtiket/SearchTiket',
       actionDeparture: 'findtiket/getDeparture',
-      actionDestination: 'findtiket/getDestination'
+      actionDestination: 'findtiket/getDestination',
+      actionGetAirlines: 'findtiket/getAllAirlines'
     }),
     onSelectFile (event) {
       this.image_proof = event.target.files[0]
@@ -228,6 +275,21 @@ export default {
       localStorage.setItem('SearchAirlines', JSON.stringify(this.dataSearch))
       window.location = '/findtiket'
     },
+    fromSearchDeparture () {
+      this.getDeparture.filter(e => {
+        if (e.name_departure_city === this.dataSearch.from) {
+          this.departureCountryName = e.name_country
+        }
+      })
+    },
+    fromSearchDestination () {
+      console.log(this.getDestination)
+      this.getDestination.filter(e => {
+        if (e.city_arrived === this.dataSearch.to) {
+          this.destinationCountryName = e.name_country
+        }
+      })
+    },
     trip (trip1) {
       this.dataSearch.trip = trip1
     },
@@ -238,108 +300,15 @@ export default {
   mounted () {
     this.actionDeparture()
     this.actionDestination()
+    this.actionGetAirlines()
   }
 }
 </script>
 
 <style scoped>
-
-/* .modal-dialog {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  bottom: 0;
-  left: 0;
-  z-index: 10040;
-  overflow: auto;
-  overflow-y: auto;
-} */
-.ty-recent {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+@media(max-width: 600px) {
+  .from, .to {
+    display: none !important;
+  }
 }
-.from-to {
-    display: flex;
-    justify-content: space-between;
-}
-.arrow {
-    display: flex;
-    justify-content: space-between;
-}
-.ctry {
-    display: flex;
-    justify-content: space-between;
-}
-.box-form {
-    background: #FFFFFF;
-    box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.19);
-    border-radius: 12px;
-}
-.type {
-    display: flex;
-    justify-content: space-around;
-}
-.dept {
-    background: #FFFFFF;
-box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.19);
-border-radius: 12px;
-}
-/* The container must be positioned relative: */
-.custom-select {
-  position: relative;
-  font-family: Arial;
-}
-
-.custom-select select {
-  display: none; /*hide original SELECT element: */
-}
-
-.select-selected {
-  background-color: DodgerBlue;
-}
-
-/* Style the arrow inside the select element: */
-.select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}
-
-/* Point the arrow upwards when the select box is open (active): */
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
-}
-
-/* style the items (options), including the selected item: */
-.select-items div,.select-selected {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-}
-
-/* Style items (options): */
-.select-items {
-  position: absolute;
-  background-color: DodgerBlue;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-}
-
-/* Hide the items when the select box is closed: */
-.cek {
-    display: flex;
-    justify-content: space-around;
-}
-
 </style>

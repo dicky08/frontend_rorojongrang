@@ -30,12 +30,18 @@ export default new Vuex.Store({
         axios
           .post(`${url}/api/users/login`, result)
           .then(dt => {
-            console.log(result)
             if (dt.data.status === 'not activated') {
               swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'akun belum teraktifasi, silakan cek gmail',
+                footer: '<a href>Why do I have this issue?</a>'
+              })
+            } else if (dt.data.status === 'Email has not been registered') {
+              swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Email has not been registered!',
                 footer: '<a href>Why do I have this issue?</a>'
               })
             } else if (!dt.data.tokenLogin) {

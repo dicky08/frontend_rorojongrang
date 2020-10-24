@@ -33,7 +33,7 @@ const getters = {
 }
 const mutations = {
   SET_DATA (state, payload) {
-    state.allData.findtiket = payload
+    state.airLinesAll = payload
   },
   SET_DEPARTURE (state, payload) {
     state.getDepartureCity = payload
@@ -49,17 +49,17 @@ const mutations = {
   }
 }
 const actions = {
-  // getAllTicket (context, payload) {
-  //   return new Promise((resolve, reject) => {
-  //     axios.get('http://localhost:3000/api/airlines/getall')
-  //       .then((result) => {
-  //         context.commit('SET_DATA', result.data)
-  //         console.log(result.data)
-  //       }).catch((err) => {
-  //         console.log(err.message)
-  //       })
-  //   })
-  // },
+  getAllAirlines (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios.get('http://localhost:3000/api/airlines/getall')
+        .then((result) => {
+          context.commit('SET_DATA', result.data)
+          console.log(result.data)
+        }).catch((err) => {
+          console.log(err.message)
+        })
+    })
+  },
   getDeparture (context, payload) {
     return new Promise((resolve, reject) => {
       axios.get(`${url}/api/departure_city/getAll`)
