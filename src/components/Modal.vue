@@ -150,10 +150,10 @@
             </div>
           </div>
           <div class="row mb-3">
-            <h4 class="col-lg-3 font-weight-bold">{{detail_booking.code_departure}}</h4>
-            <div class="col-lg-3"><img src="../assets/assets/img/Vector.png"></div>
-            <h4 class="col-lg-3 font-weight-bold">{{detail_booking.code_destination}}</h4>
-            <p class="col-lg-3 font-weight-bold">{{detail_booking.code_airlines}}</p>
+            <h4 class="col-lg-3 col-3 font-weight-bold">{{detail_booking.code_departure}}</h4>
+            <div class="col-lg-3 col-3"><img src="../assets/assets/img/Vector.png"></div>
+            <h4 class="col-lg-3 col-3 font-weight-bold">{{detail_booking.code_destination}}</h4>
+            <p class="col-lg-3 col-3 font-weight-bold">{{detail_booking.code_airlines}}</p>
           </div>
           <div class="row">
             <div class="col-lg-12">
